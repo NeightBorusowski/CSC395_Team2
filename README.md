@@ -1,1 +1,1 @@
-# CSC395_Team2
+Read me is added and functional
