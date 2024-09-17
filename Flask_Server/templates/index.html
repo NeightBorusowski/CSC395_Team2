@@ -82,13 +82,34 @@
         const company = document.getElementById('company').value;
         const ingredients = document.getElementById('ingredients').value;
 
-        // Store the values in variables (for further processing if needed)
-        console.log("Selected Company:", company);
-        console.log("Ingredients Entered:", ingredients);
-        console.log("Selected LLM:", selectedLLM);
+        const data = {
+            company: company,
+            ingredients: ingredients,
+            llm: selectedLLM
+        };
 
         // Reset the textarea
         document.getElementById('ingredients').value = '';
+
+        // Send the data to Flask server via POST request
+        fetch('/submit_data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify(data)  // Convert JS object to JSON string
+            })
+            .then(response => response.json())
+            .then(data => {
+                console.log('Success:', data);
+                alert('Data successfully sent to Flask!');
+            })
+            .catch((error) => {
+                console.error('Error:', error);
+            });
+
+            // Reset the textarea
+            document.getElementById('ingredients').value = '';
     }
 
     function selectLLM(button) {
@@ -109,6 +130,7 @@
             document.getElementById('recipe-tagline').textContent = tagline;
             document.getElementById('recipe-content').textContent = recipeText;
     }
+
 </script>
 </head>
 <body>
