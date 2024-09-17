@@ -82,14 +82,12 @@
         const company = document.getElementById('company').value;
         const ingredients = document.getElementById('ingredients').value;
 
+        //data to be held for passsing in to backend
         const data = {
             company: company,
             ingredients: ingredients,
             llm: selectedLLM
         };
-
-        // Reset the textarea
-        document.getElementById('ingredients').value = '';
 
         // Send the data to Flask server via POST request
         fetch('/submit_data', {
@@ -112,6 +110,7 @@
             document.getElementById('ingredients').value = '';
     }
 
+    //allows llms to be selected and passed to backend
     function selectLLM(button) {
         // Remove selected class from all buttons
         const buttons = document.querySelectorAll('.llm-buttons button');
@@ -131,12 +130,20 @@
             document.getElementById('recipe-content').textContent = recipeText;
     }
 
+    // Example function to update the recipe content from another application
+    function updateRecipe(name, tagline, recipeText) {
+            document.getElementById('recipe-name').textContent = name;
+            document.getElementById('recipe-tagline').textContent = tagline;
+            document.getElementById('recipe-content').textContent = recipeText;
+    }
 </script>
 </head>
 <body>
     <div class="container">
+        <!-- Left side of GUI -->
         <div class="left">
             <form onsubmit="handleSubmit(event)">
+                <!-- Company selection dropdown -->
                 <label for="company">Company</label>
                 <select id="company">
                     <option>Sample Text1</option>
@@ -146,9 +153,11 @@
                     <option>Sample Text5</option> 
                 </select>
 
+                <!-- Ingredients editable text area -->
                 <label for="ingredients">Ingredients</label>
                 <textarea id="ingredients" rows="10"></textarea>
 
+                <!-- LLM Buttons -->
                 <div class="llm-buttons">
                     <button type="button" onclick="selectLLM(this)">LLM1</button>
                     <button type="button" onclick="selectLLM(this)">LLM2</button>
@@ -156,12 +165,17 @@
                     <button type="button" onclick="selectLLM(this)">LLM4</button>
                 </div>
                 
+                <!-- Submit Button -->
                 <input type="submit" value="Submit">
             </form>
         </div>
 
+        <!-- Right side of gui -->
         <div class="right">
+            <!-- Recipe header -->
             <h2>Recipe</h2>
+
+            <!-- Name and Tagline text areas -->
             <p><strong>Name:</strong> <span id="recipe-name">N/A</span></p>
             <p><strong>Tagline:</strong> <span id="recipe-tagline">N/A</span></p>
             <div class="recipe-box" id="recipe-content">
@@ -172,13 +186,6 @@
     </div>
 
     <script>
-        // Example function to update the recipe content from another application
-        function updateRecipe(name, tagline, recipeText) {
-            document.getElementById('recipe-name').textContent = name;
-            document.getElementById('recipe-tagline').textContent = tagline;
-            document.getElementById('recipe-content').textContent = recipeText;
-        }
-
         // Example of dynamically updating the content
         // You can replace these with real data or call this function from another script
         updateRecipe("Chocolate Cake", "Delicious homemade cake", "1. Mix ingredients...\n2. Bake for 30 minutes...");
