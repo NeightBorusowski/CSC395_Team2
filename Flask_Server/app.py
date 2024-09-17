@@ -7,7 +7,7 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
-#read data function
+#Get data from frontend 
 @app.route("/submit_data", methods=["POST"])
 def submit_data():
     data = request.get_json()  # Get the JSON data sent from the frontend
@@ -19,6 +19,10 @@ def submit_data():
 
     #returns the data, format as needed
     return company, ingredients, llm
+
+#add function to send data to llm and receive back response
+
+#add function to send data returned from llm to frontend
 
     #hosts the website locally
 if __name__ == '__main__':
