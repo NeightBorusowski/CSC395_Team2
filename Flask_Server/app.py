@@ -7,6 +7,8 @@ app = Flask(__name__)
 def home():
     return render_template('index.html')
 
+#read data function
+@app.route("/submit_data", methods=["POST"])
 def submit_data():
     data = request.get_json()  # Get the JSON data sent from the frontend
 
@@ -14,11 +16,6 @@ def submit_data():
     ingredients = data.get('ingredients')
     llm = data.get('llm')
 
-    # Process the received data
-    print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
-
-    # Respond with a success message or further processing results
-    return jsonify({'status': 'success', 'message': 'Data received successfully!'})
-
+    return company, ingredients, llm
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
