@@ -17,8 +17,11 @@ def submit_data():
     ingredients = data.get('ingredients')
     llm = data.get('llm')
 
-    #returns the data, format as needed
-    return company, ingredients, llm
+    # Process the received data
+    print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
+
+    # Respond with a success message or further processing results
+    return jsonify({'status': 'success', 'message': 'Data received successfully!'})
 
 #add function to send data to llm and receive back response
 
