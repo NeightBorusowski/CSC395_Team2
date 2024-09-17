@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Recipe Website</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px;
+        }
+        .left, .right {
+            background-color: #d3d3d3;
+            padding: 20px;
+            border-radius: 5px;
+        }
+        .left {
+            width: 35%;
+        }
+        .right {
+            width: 60%;
+        }
+        select, textarea, input[type="text"], input[type="submit"] {
+            width: 100%;
+            padding: 10px;
+            margin: 10px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        input[type="submit"] {
+            width: auto;
+            background-color: #666;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+        .llm-buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .llm-buttons button {
+            width: 22%;
+            padding: 10px;
+            border: none;
+            background-color: #666;
+            color: white;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+        .right h2 {
+            margin-bottom: 10px;
+        }
+        .recipe-box {
+            background-color: white;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            min-height: 300px;
+            overflow: auto;
+            white-space: pre-wrap; /* Preserve formatting */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <div class="left">
+            <label for="company">Company</label>
+            <select id="company">
+                <option>Sample Text</option>
+            </select>
+
+            <label for="ingredients">Ingredients</label>
+            <textarea id="ingredients" rows="10"></textarea>
+
+            <input type="submit" value="Submit">
+
+            <div class="llm-buttons">
+                <button>LLM</button>
+                <button>LLM</button>
+                <button>LLM</button>
+                <button>LLM</button>
+            </div>
+        </div>
+
+        <div class="right">
+            <h2>Recipe</h2>
+            <p><strong>Name:</strong> <span id="recipe-name">N/A</span></p>
+            <p><strong>Tagline:</strong> <span id="recipe-tagline">N/A</span></p>
+            <div class="recipe-box" id="recipe-content">
+                <!-- The recipe content will appear here -->
+                Recipe will be displayed here.
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Example function to update the recipe content from another application
+        function updateRecipe(name, tagline, recipeText) {
+            document.getElementById('recipe-name').textContent = name;
+            document.getElementById('recipe-tagline').textContent = tagline;
+            document.getElementById('recipe-content').textContent = recipeText;
+        }
+
+        // Example of dynamically updating the content
+        // You can replace these with real data or call this function from another script
+        updateRecipe("Chocolate Cake", "Delicious homemade cake", "1. Mix ingredients...\n2. Bake for 30 minutes...");
+    </script>
+
+</body>
+</html>
