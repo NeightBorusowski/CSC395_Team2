@@ -54,6 +54,9 @@
             cursor: pointer;
             border-radius: 5px;
         }
+        .llm-buttons button.selected {
+            background-color: black;
+        }
         .right h2 {
             margin-bottom: 10px;
         }
@@ -67,27 +70,71 @@
             white-space: pre-wrap; /* Preserve formatting */
         }
     </style>
+
+<script>
+    let selectedLLM = '';
+
+    function handleSubmit(event) {
+        event.preventDefault(); // Prevent form submission to keep page from refreshing
+
+        // Get the selected company value and the text from the textarea
+        const company = document.getElementById('company').value;
+        const ingredients = document.getElementById('ingredients').value;
+
+        // Store the values in variables (for further processing if needed)
+        console.log("Selected Company:", company);
+        console.log("Ingredients Entered:", ingredients);
+        console.log("Selected LLM:", selectedLLM);
+
+        // Reset the textarea
+        document.getElementById('ingredients').value = '';
+    }
+
+    function selectLLM(button) {
+        // Remove selected class from all buttons
+        const buttons = document.querySelectorAll('.llm-buttons button');
+        buttons.forEach(btn => btn.classList.remove('selected'));
+
+        // Add selected class to the clicked button
+        button.classList.add('selected');
+
+        // Save the selected LLM button text
+        selectedLLM = button.innerText;
+    }
+
+    // Example function to update the recipe content from another application
+    function updateRecipe(name, tagline, recipeText) {
+            document.getElementById('recipe-name').textContent = name;
+            document.getElementById('recipe-tagline').textContent = tagline;
+            document.getElementById('recipe-content').textContent = recipeText;
+    }
+</script>
 </head>
 <body>
-
     <div class="container">
         <div class="left">
-            <label for="company">Company</label>
-            <select id="company">
-                <option>Sample Text</option>
-            </select>
+            <form onsubmit="handleSubmit(event)">
+                <label for="company">Company</label>
+                <select id="company">
+                    <option>Sample Text1</option>
+                    <option>Sample Text2</option>
+                    <option>Sample Text3</option>
+                    <option>Sample Text4</option>
+                    <option>Sample Text5</option> 
+                </select>
 
-            <label for="ingredients">Ingredients</label>
-            <textarea id="ingredients" rows="10"></textarea>
+                <label for="ingredients">Ingredients</label>
+                <textarea id="ingredients" rows="10"></textarea>
 
-            <input type="submit" value="Submit">
-
-            <div class="llm-buttons">
-                <button>LLM</button>
-                <button>LLM</button>
-                <button>LLM</button>
-                <button>LLM</button>
-            </div>
+                <div class="llm-buttons">
+                    <button type="button" onclick="selectLLM(this)">LLM1</button>
+                    <button type="button" onclick="selectLLM(this)">LLM2</button>
+                    <button type="button" onclick="selectLLM(this)">LLM3</button>
+                    <button type="button" onclick="selectLLM(this)">LLM4</button>
+                </div>
+                
+                <input type="submit" value="Submit">
+            </form>
         </div>
 
         <div class="right">
@@ -116,3 +163,4 @@
 
 </body>
 </html>
+
