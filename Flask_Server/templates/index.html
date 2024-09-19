@@ -47,7 +47,7 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
-        
+
         .nav a:hover {
             background-color: #555;
         }
@@ -178,6 +178,22 @@
     }
 
     //function to recive data from backend
+    function recieve_Data(newName, newTag, newRecipe){
+        fetch('/get_data')
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Data received:', data);
+
+                    //adjust if backend sends data differently
+                    const recipeName = data.name;
+                    const recipeTagline = data.tagline;
+                    const recipeText = data.recipeText;
+
+                    //update the frontend
+                    updateRecipe(recipeName, recipeTagline, recipeText);
+                })
+                .catch(error => console.error('Error:', error));
+        }
 
     //function to update the recipe content from another application
     function updateRecipe(name, tagline, recipeText) {
