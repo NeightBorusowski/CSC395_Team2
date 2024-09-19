@@ -14,6 +14,7 @@
             padding: 0;
             background-color: #383838;
         }
+
         .header {
             background-color: #333;
             color: #fff;
@@ -23,18 +24,22 @@
             align-items: center;
             border-bottom: 2px solid #555;
         }
+
         .logo {
             font-size: 24px;
             font-weight: bold;
         }
+
         .logo a {
             color: #fff;
             text-decoration: none;
         }
+
         .nav {
             display: flex;
             gap: 20px;
         }
+
         .nav a {
             color: #fff;
             text-decoration: none;
@@ -42,6 +47,7 @@
             border-radius: 4px;
             transition: background-color 0.3s;
         }
+        
         .nav a:hover {
             background-color: #555;
         }
@@ -113,7 +119,7 @@
             border-radius: 5px;
             min-height: 300px;
             overflow: auto;
-            white-space: pre-wrap; /* Preserve formatting */
+            white-space: pre-wrap;
         }
 
     </style>
@@ -122,9 +128,10 @@
     let selectedLLM = '';
 
     function handleSubmit(event) {
-        event.preventDefault(); // Prevent form submission to keep page from refreshing
+        //Prevent form submission to keep page from refreshing
+        event.preventDefault();
 
-        // Get the selected company value and the text from the textarea
+        //Get the selected company value and the text from the textarea
         const company = document.getElementById('company').value;
         const ingredients = document.getElementById('ingredients').value;
 
@@ -135,13 +142,14 @@
             llm: selectedLLM
         };
 
-        // Send the data to Flask server via POST request
+        //Send the data to Flask server via POST request
         fetch('/submit_data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)  // Convert JS object to JSON string
+                //Convert JS object to JSON string
+                body: JSON.stringify(data)
             })
             .then(response => response.json())
             .then(data => {
@@ -152,7 +160,7 @@
                 console.error('Error:', error);
             });
 
-            // Reset the textarea
+            //Reset the textarea
             document.getElementById('ingredients').value = '';
     }
 
@@ -168,6 +176,8 @@
         // Save the selected LLM button text
         selectedLLM = button.innerText;
     }
+
+    //function to recive data from backend
 
     //function to update the recipe content from another application
     function updateRecipe(name, tagline, recipeText) {
