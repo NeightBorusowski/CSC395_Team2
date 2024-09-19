@@ -1,5 +1,6 @@
 # app.py
 from flask import Flask, render_template, request, jsonify
+import requests
 
 app = Flask(__name__)
 
@@ -20,8 +21,10 @@ def submit_data():
     # Process the received data
     print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
 
+    response_from_llm = send_data(company,ingredients,llm)
+
     # Respond with a success message or further processing results
-    return jsonify({'status': 'success', 'message': 'Data received successfully!'})
+    return jsonify({'status': 'success', 'message': response_from_llm})
 
 #add function to send data to llm and receive back response
 
