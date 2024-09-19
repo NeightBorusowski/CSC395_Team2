@@ -1,7 +1,6 @@
 # app.py
 from flask import Flask, render_template, request, jsonify
-import requests
-
+#Tyler Test commit
 app = Flask(__name__)
 
 @app.route("/")
@@ -21,10 +20,8 @@ def submit_data():
     # Process the received data
     print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
 
-    response_from_llm = send_data(company,ingredients,llm)
-
     # Respond with a success message or further processing results
-    return jsonify({'status': 'success', 'message': response_from_llm})
+    return jsonify({'status': 'success', 'message': 'Data received successfully!'})
 
 #add function to send data to llm and receive back response
 

@@ -1,15 +1,55 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <title>Dev Chefs Cookbook</title>
+
     <style>
         body {
             font-family: Arial, sans-serif;
             margin: 0;
             padding: 0;
             background-color: #383838;
+        }
+
+        .header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #555;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+        }
+
+        .logo a {
+            color: #fff;
+            text-decoration: none;
+        }
+
+        .nav {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav a {
+            color: #fff;
+            text-decoration: none;
+            padding: 10px;
+            border-radius: 4px;
+            transition: background-color 0.3s;
+        }
+
+        .nav a:hover {
+            background-color: #555;
         }
 
         .container {
@@ -79,7 +119,7 @@
             border-radius: 5px;
             min-height: 300px;
             overflow: auto;
-            white-space: pre-wrap; /* Preserve formatting */
+            white-space: pre-wrap;
         }
 
     </style>
@@ -88,9 +128,10 @@
     let selectedLLM = '';
 
     function handleSubmit(event) {
-        event.preventDefault(); // Prevent form submission to keep page from refreshing
+        //Prevent form submission to keep page from refreshing
+        event.preventDefault();
 
-        // Get the selected company value and the text from the textarea
+        //Get the selected company value and the text from the textarea
         const company = document.getElementById('company').value;
         const ingredients = document.getElementById('ingredients').value;
 
@@ -101,13 +142,14 @@
             llm: selectedLLM
         };
 
-        // Send the data to Flask server via POST request
+        //Send the data to Flask server via POST request
         fetch('/submit_data', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json'
                 },
-                body: JSON.stringify(data)  // Convert JS object to JSON string
+                //Convert JS object to JSON string
+                body: JSON.stringify(data)
             })
             .then(response => response.json())
             .then(data => {
@@ -118,7 +160,7 @@
                 console.error('Error:', error);
             });
 
-            // Reset the textarea
+            //Reset the textarea
             document.getElementById('ingredients').value = '';
     }
 
@@ -135,22 +177,43 @@
         selectedLLM = button.innerText;
     }
 
-    // Example function to update the recipe content from another application
+    //function to recive data from backend
+    function recieve_Data(newName, newTag, newRecipe){
+        fetch('/get_data')
+        .then(response => response.json())
+        .then(data => {
+            console.log('Data received:', data);
+
+            //adjust if backend sends data differently
+            const recipeName = data.name;
+            const recipeTagline = data.tagline;
+            const recipeText = data.recipeText;
+
+            //update the frontend
+            updateRecipe(recipeName, recipeTagline, recipeText);
+        })
+        .catch(error => console.error('Error:', error));
+        }
+
+    //function to update the recipe content from another application
     function updateRecipe(name, tagline, recipeText) {
             document.getElementById('recipe-name').textContent = name;
             document.getElementById('recipe-tagline').textContent = tagline;
             document.getElementById('recipe-content').textContent = recipeText;
     }
 
-    // Example function to update the recipe content from another application
-    function updateRecipe(name, tagline, recipeText) {
-            document.getElementById('recipe-name').textContent = name;
-            document.getElementById('recipe-tagline').textContent = tagline;
-            document.getElementById('recipe-content').textContent = recipeText;
-    }
 </script>
+
 </head>
 <body>
+
+    <header class="header">
+        <div class="logo">
+            <a href="#">Dev Chef's Cookbook</a>
+        </div>
+        <nav class="nav">
+        </nav>
+    </header>
     <div class="container">
         <!-- Left side of GUI -->
         <div class="left">
