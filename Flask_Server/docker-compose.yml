@@ -12,6 +12,8 @@ services:
     networks:
       - app-network
 
+    #command: gunicorn --bind 0.0.0.0:8080 app:app
+
   ollama-container:
     build:
       context: ./Ollama #build ollama container
