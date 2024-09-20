@@ -1,6 +1,6 @@
 # app.py
-from flask import Flask, render_template, request, jsonify
-from Ollama.ollama import send_to_ollama
+from flask import Flask, render_template, request, jsonify, requests
+#from Ollama.ollama import send_to_ollama
 app = Flask(__name__)
 
 @app.route("/")
@@ -28,7 +28,6 @@ def submit_data():
 
 @app.route('create_question', methods='GET')
 #function to send data to llm and receive back response
-#test
 def create_question():
     #temp variables to just try and get a response first before using the json
     var1 =  "Kraft"
@@ -43,11 +42,18 @@ def create_question():
     #returning the response
     return jsonify({"ollama's response:", ollama_response})
 
+def send_to_ollama(question):
+    #Define Ollama container's endpoint (running on port 5000)
+    ollama_url = "https://ollama_container:5000/generate"
 
+    #send the formatted question to ollama using a POST request
+    payload = {"prompt": question}
+    response = requests.post(ollama_url, json = payload)
 
-
-
-
+    if response.status_code == 200:
+        return response.json()
+    else:
+        return {"error": "Failed to get a response from ollama"}
 
 
 #add function to send data returned from llm to frontend
