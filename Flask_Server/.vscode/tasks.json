@@ -7,8 +7,8 @@
 			"platform": "python",
 			"dockerBuild": {
 				"tag": "flaskdocker:latest",
-				"dockerfile": "${workspaceFolder}/Flask_Server/Dockerfile",  // Path to Flask server Dockerfile
-				"context": "${workspaceFolder}/Flask_Server",  // Context for Flask server
+				"dockerfile": "${workspaceFolder}/Flask_Server/Dockerfile",
+				"context": "${workspaceFolder}/Flask_Server",
 				"pull": true
 			}
 		},
@@ -20,9 +20,9 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "app.py"  // Flask server app entry point
+					"FLASK_APP": "app.py"
 				},
-				"ports": ["8080:8080"],  // Expose Flask server on port 8080
+				"ports": ["8080:8080"],
 				"volumes": [
 					{
 						"localPath": "${workspaceFolder}/Flask_Server",
@@ -49,8 +49,8 @@
 			"platform": "python",
 			"dockerBuild": {
 				"tag": "ollamadocker:latest",
-				"dockerfile": "${workspaceFolder}/Flask_Server/Ollama/Dockerfile",  // Path to Ollama Dockerfile
-				"context": "${workspaceFolder}/Flask_Server/Ollama",  // Context for Ollama service
+				"dockerfile": "${workspaceFolder}/Flask_Server/Ollama/Dockerfile",
+				"context": "${workspaceFolder}/Flask_Server/Ollama",
 				"pull": true
 			}
 		},
@@ -62,9 +62,9 @@
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "ollama_api.py"  // Ollama service entry point
+					"FLASK_APP": "ollama_api.py" 
 				},
-				"ports": ["5000:5000"],  // Expose Ollama service on port 5000
+				"ports": ["5000:5000"],
 				"volumes": [
 					{
 						"localPath": "${workspaceFolder}/Flask_Server/Ollama",

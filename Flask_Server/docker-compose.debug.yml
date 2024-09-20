@@ -3,7 +3,7 @@ version: '3.4'
 services:
   flask-app:
     build:
-      context: ./  # Build Flask app
+      context: ./
       dockerfile: Dockerfile
     ports:
       - "8080:8080"

@@ -9,8 +9,8 @@
             "python": {
                 "pathMappings": [
                     {
-                        "localRoot": "${workspaceFolder}/Flask_Server",  // Path to Flask Server
-                        "remoteRoot": "/app"  // This matches your WORKDIR in Dockerfile
+                        "localRoot": "${workspaceFolder}/Flask_Server", 
+                        "remoteRoot": "/app" 
                     }
                 ],
                 "projectType": "flask"
@@ -24,8 +24,8 @@
             "python": {
                 "pathMappings": [
                     {
-                        "localRoot": "${workspaceFolder}/Flask_Server/Ollama",  // Path to Ollama service
-                        "remoteRoot": "/app"  // This matches the WORKDIR for Ollama in Dockerfile
+                        "localRoot": "${workspaceFolder}/Flask_Server/Ollama",  
+                        "remoteRoot": "/app"  
                     }
                 ],
                 "projectType": "flask"
