@@ -1,14 +1,39 @@
 version: '3.4'
 
 services:
-  flaskdocker:
-    image: flaskdocker
+  flask-app:
     build:
-      context: .
-      dockerfile: ./Dockerfile
-    command: ["sh", "-c", "pip install debugpy -t /tmp && python /tmp/debugpy --wait-for-client --listen 0.0.0.0:5678 -m flask run --no-debugger --no-reload --host 0.0.0.0 --port 5000"]
+      context: ./  # Build Flask app
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
-      - 5678:5678
+      - "8080:8080"
+    depends_on:
+      - ollama-container
+    networks:
+      - app-network
     environment:
-      - FLASK_APP=app.py
+      FLASK_APP: "app.py"
+      FLASK_ENV: "development"
+      PYTHONUNBUFFERED: 1
+    volumes:
+      - ./:/app  
+    command: flask run --host=0.0.0.0 --port=8080 --no-debugger --reload
+    entrypoint: ["python3", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "app.py"]
+    #debugger listens on port 5678, waiting for the debugger to attach
+
+  ollama-container:
+    build:
+      context: ./Ollama
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+    volumes:
+      - ./Ollama:/ollama
+    command: python3 -m debugpy --listen 0.0.0.0:5679 --wait-for-client ollama.py
+    #debugger listens on port 5679 for Ollama service
+
+networks:
+  app-network:
+    driver: bridge
