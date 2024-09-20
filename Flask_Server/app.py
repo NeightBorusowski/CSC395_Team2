@@ -27,22 +27,6 @@ def submit_data():
 #In this function, im creating a request to send to ollama.py (formatting a question with the variables to
 #send too ollama.py)
 
-# Use the service name `ollama-container` to communicate with Ollama
-OLLAMA_API_URL = "http://ollama-container:5000/process"
-
-@app.route('/ask', methods=['POST'])
-def ask_ollama():
-    data = request.json
-    question = data.get('question')
-
-    response = requests.post(OLLAMA_API_URL, json={"question": question})
-
-    if response.status_code == 200:
-        return jsonify(response.json())
-    else:
-        return jsonify({"error": "Failed to communicate with Ollama"}), 500
-
-
 #add function to send data returned from llm to frontend
 
     #hosts the website locally
