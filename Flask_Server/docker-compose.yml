@@ -3,23 +3,23 @@ version: '3.4'
 services:
   flask-app:
     build:
-      context: ./Flask_server  # Specify the folder for Flask
+      context: ./Flask_server  #build flask app
       dockerfile: Dockerfile
     ports:
-      - "5000:5000"
+      - "8080:8080"
     depends_on:
       - ollama-container
     networks:
       - app-network
 
-    ollama-container:
-      build:
-        context: ./Flask_server/Ollama
-        dockerfile: Dockerfile
-      ports:
-        - "5001:5001"
-      networks:
-        - app-network
+  ollama-container:
+    build:
+      context: ./Flask_server/Ollama #build ollama container
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
 
 networks:
   app-network:
