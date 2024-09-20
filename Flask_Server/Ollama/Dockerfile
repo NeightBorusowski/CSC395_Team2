@@ -14,4 +14,4 @@ RUN pip install -r requirements.txt
 EXPOSE 5001
 
 # Start the Ollama service
-CMD ["python", "ollama_api.py"]
+CMD ["python", "ollama.py"]
