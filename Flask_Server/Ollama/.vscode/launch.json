@@ -1,15 +1,31 @@
 {
+    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Docker: Python - Flask",
+            "name": "Docker: Flask Server",
             "type": "docker",
             "request": "launch",
-            "preLaunchTask": "docker-run: debug",
+            "preLaunchTask": "docker-run: debug-flask-server",
             "python": {
                 "pathMappings": [
                     {
-                        "localRoot": "${workspaceFolder}",
-                        "remoteRoot": "/app"
+                        "localRoot": "${workspaceFolder}/Flask_Server",  // Path to Flask Server
+                        "remoteRoot": "/app"  // This matches your WORKDIR in Dockerfile
+                    }
+                ],
+                "projectType": "flask"
+            }
+        },
+        {
+            "name": "Docker: Ollama",
+            "type": "docker",
+            "request": "launch",
+            "preLaunchTask": "docker-run: debug-ollama",
+            "python": {
+                "pathMappings": [
+                    {
+                        "localRoot": "${workspaceFolder}/Flask_Server/Ollama",  // Path to Ollama service
+                        "remoteRoot": "/app"  // This matches the WORKDIR for Ollama in Dockerfile
                     }
                 ],
                 "projectType": "flask"
