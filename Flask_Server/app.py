@@ -1,6 +1,6 @@
 # app.py
 from flask import Flask, render_template, request, jsonify
-#Tyler Test commit
+import requests;
 app = Flask(__name__)
 
 @app.route("/")
@@ -24,6 +24,11 @@ def submit_data():
     return jsonify({'status': 'success', 'message': 'Data received successfully!'})
 
 #add function to send data to llm and receive back response
+#In this function, im creating a request to send to ollama.py (formatting a question with the variables to
+#send too ollama.py)
+
+
+
 
 #add function to send data returned from llm to frontend
 
