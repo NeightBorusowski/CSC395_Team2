@@ -7,7 +7,7 @@ def recievedata(company, ingredients):
     print(f"company {company} ingredients {ingredients}")
 
 #function that gets called in app.py, sends the question to this container
-def send_to_ollama():
+def send_to_ollama(question):
 
 
 
