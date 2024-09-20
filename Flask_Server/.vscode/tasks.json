@@ -3,25 +3,32 @@
 	"tasks": [
 		{
 			"type": "docker-build",
-			"label": "docker-build",
+			"label": "docker-build: flask-server",
 			"platform": "python",
 			"dockerBuild": {
 				"tag": "flaskdocker:latest",
-				"dockerfile": "${workspaceFolder}/Dockerfile",
-				"context": "${workspaceFolder}",
+				"dockerfile": "${workspaceFolder}/Flask_Server/Dockerfile",  // Path to Flask server Dockerfile
+				"context": "${workspaceFolder}/Flask_Server",  // Context for Flask server
 				"pull": true
 			}
 		},
 		{
 			"type": "docker-run",
-			"label": "docker-run: debug",
+			"label": "docker-run: flask-server",
 			"dependsOn": [
-				"docker-build"
+				"docker-build: flask-server"
 			],
 			"dockerRun": {
 				"env": {
-					"FLASK_APP": "app.py"
-				}
+					"FLASK_APP": "app.py"  // Flask server app entry point
+				},
+				"ports": ["8080:8080"],  // Expose Flask server on port 8080
+				"volumes": [
+					{
+						"localPath": "${workspaceFolder}/Flask_Server",
+						"containerPath": "/app"
+					}
+				]
 			},
 			"python": {
 				"args": [
@@ -32,6 +39,48 @@
 					"0.0.0.0",
 					"--port",
 					"8080"
+				],
+				"module": "flask"
+			}
+		},
+		{
+			"type": "docker-build",
+			"label": "docker-build: ollama",
+			"platform": "python",
+			"dockerBuild": {
+				"tag": "ollamadocker:latest",
+				"dockerfile": "${workspaceFolder}/Flask_Server/Ollama/Dockerfile",  // Path to Ollama Dockerfile
+				"context": "${workspaceFolder}/Flask_Server/Ollama",  // Context for Ollama service
+				"pull": true
+			}
+		},
+		{
+			"type": "docker-run",
+			"label": "docker-run: ollama",
+			"dependsOn": [
+				"docker-build: ollama"
+			],
+			"dockerRun": {
+				"env": {
+					"FLASK_APP": "ollama_api.py"  // Ollama service entry point
+				},
+				"ports": ["5000:5000"],  // Expose Ollama service on port 5000
+				"volumes": [
+					{
+						"localPath": "${workspaceFolder}/Flask_Server/Ollama",
+						"containerPath": "/app"
+					}
+				]
+			},
+			"python": {
+				"args": [
+					"run",
+					"--no-debugger",
+					"--no-reload",
+					"--host",
+					"0.0.0.0",
+					"--port",
+					"5000"
 				],
 				"module": "flask"
 			}
