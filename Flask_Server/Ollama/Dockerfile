@@ -1,17 +1,31 @@
-# Use an official Python runtime as a parent image
-FROM python:3.9-slim
+# For more information, please refer to https://aka.ms/vscode-docker-python
+FROM python:3-slim
 
-# Set the working directory in the container
+EXPOSE 5001
+
+# Keeps Python from generating .pyc files in the container
+ENV PYTHONDONTWRITEBYTECODE=1
+
+# Turns off buffering for easier container logging
+ENV PYTHONUNBUFFERED=1
+
+# Install pip requirements
+COPY requirements.txt .
+RUN python -m pip install -r requirements.txt
+
 WORKDIR /app
-
-# Copy the current directory contents into the container
 COPY . /app
+
+# Creates a non-root user with an explicit UID and adds permission to access the /app folder
+# For more info, please refer to https://aka.ms/vscode-docker-python-configure-containers
+RUN adduser -u 5678 --disabled-password --gecos "" appuser && chown -R appuser /app
+USER appuser
 
 # Install dependencies
 RUN pip install -r requirements.txt
 
-# Expose port 5001 for Ollama service
-EXPOSE 5001
+# Expose port 5000 for Ollama service
+EXPOSE 5000
 
-# Start the Ollama service
-CMD ["python", "ollama_api.py"]
+# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
+CMD ["gunicorn", "--bind", "0.0.0.0:5001", "ollama:app"]

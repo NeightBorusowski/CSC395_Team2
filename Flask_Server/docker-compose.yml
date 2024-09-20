@@ -14,7 +14,7 @@ services:
 
     ollama-container:
       build:
-        context: ./Ollama  # Specify the folder for Ollama
+        context: ./Flask_server/Ollama
         dockerfile: Dockerfile
       ports:
         - "5001:5001"
