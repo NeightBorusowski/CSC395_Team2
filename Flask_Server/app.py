@@ -1,6 +1,6 @@
 # app.py
-from flask import Flask, jsonify
-import requests
+from flask import Flask, render_template, request, jsonify
+from Ollama.ollama import send_to_ollama
 app = Flask(__name__)
 
 @app.route("/")
