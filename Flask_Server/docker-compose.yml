@@ -1,10 +1,28 @@
 version: '3.4'
 
 services:
-  flaskdocker:
-    image: flaskdocker
+  flask-app:
     build:
-      context: .
-      dockerfile: ./Dockerfile
+      context: ./  #build flask app
+      dockerfile: Dockerfile
     ports:
-      - 5000:5000
+      - "8080:8080"
+    depends_on:
+      - ollama-container
+    networks:
+      - app-network
+
+    #command: gunicorn --bind 0.0.0.0:8080 app:app
+
+  ollama-container:
+    build:
+      context: ./Ollama #build ollama container
+      dockerfile: Dockerfile
+    ports:
+      - "5000:5000"
+    networks:
+      - app-network
+
+networks:
+  app-network:
+    driver: bridge
