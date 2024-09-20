@@ -29,6 +29,7 @@ def submit_data():
 
 #add function to send data returned from llm to frontend
 
-    #hosts the website locally
+
+#hosts the website locally
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
