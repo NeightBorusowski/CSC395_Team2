@@ -8,7 +8,7 @@ def recievedata(company, ingredients):
 
 #function that gets called in app.py, sends the question to this container
 def send_to_ollama(question):
-
+#Hi steve
 
 
 
