@@ -1,6 +1,8 @@
 from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+#nonfunctioning function used as example 
 def recievedata(company, ingredients):
     print(f"company {company} ingredients {ingredients}")
 
