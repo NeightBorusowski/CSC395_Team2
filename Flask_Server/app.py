@@ -65,6 +65,6 @@ def return_data(ollama_response):
     # send the ollama response given that there has been no errors in the response
     return jsonify({"status": "success", "data": ollama_response})
 
-#hosts the website locally
+# hosts the website locally
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
