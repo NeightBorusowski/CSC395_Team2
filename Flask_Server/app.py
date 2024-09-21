@@ -30,7 +30,7 @@ def submit_data():
 #function to send data to llm and receive back response
 def create_question():
     #temp variables to just try and get a response first before using the json
-    var1 =  "Kraft"
+    var1 = "Kraft"
     var2 = "Noodles and Cheese"
 
     #formatting the question
@@ -57,8 +57,13 @@ def send_to_ollama(question):
 
 
 #add function to send data returned from llm to frontend
-def return_data():
+def return_data(ollama_response):
+    # returns an error if the ollama response is incorrect
+    if "error" in ollama_response:
+        return jsonify({"status": "error", "message": ollama_response["error"]}), 500
 
+    # send the ollama response given that there has been no errors in the response
+    return jsonify({"status": "success", "data": ollama_response})
 
 #hosts the website locally
 if __name__ == '__main__':
