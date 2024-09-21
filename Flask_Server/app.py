@@ -56,10 +56,12 @@ def send_to_ollama(question):
         return {"error": "Failed to get a response from ollama"}
 
 
-#add function to send data returned from llm to frontend
+# add function to send data returned from llm to frontend
+# in this function I am sending data in json format to the frontend
 def return_data(ollama_response):
     # returns an error if the ollama response is incorrect
     if "error" in ollama_response:
+        # returns json object if there is an error using the flask jsonify method
         return jsonify({"status": "error", "message": ollama_response["error"]}), 500
 
     # send the ollama response given that there has been no errors in the response
