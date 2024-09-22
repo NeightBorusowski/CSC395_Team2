@@ -35,7 +35,7 @@ def create_question(company, ingredients):
     ollama_response = send_to_ollama(question)
 
     #returning the response
-    return ({"ollama_response": ollama_response})
+    return ollama_response
 
 def send_to_ollama(question):
 
