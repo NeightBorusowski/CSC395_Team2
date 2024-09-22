@@ -19,23 +19,23 @@ def submit_data():
     llm = data.get('llm')
 
     # Process the received data
-    print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
-
+    #print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
+    create_question(company, ingredients)
     # Respond with a success message or further processing results
-    return jsonify({'status': 'success', 'message': 'Data received successfully!'})
+    #return jsonify({'status': 'success', 'message': 'Data received successfully!'})
 
 #In this function, im creating a request to send to ollama.py (formatting a question with the variables to
 #send too ollama.py)
 
 @app.route("/create_question", methods=["GET"])
 #function to send data to llm and receive back response
-def create_question():
+def create_question(company, ingredients):
     #temp variables to just try and get a response first before using the json
-    var1 = "Kraft"
-    var2 = "Noodles and Cheese"
+    #var1 = "Kraft"
+    #var2 = "Noodles and Cheese"
 
     #formatting the question
-    question = f"Create me a recipe using the company, {var1} with these ingredients, {var2}"
+    question = f"Create me a recipe using the company, {company} with these ingredients, {ingredients}"
 
     #sending the question to the ollama container
     ollama_response = send_to_ollama(question)
