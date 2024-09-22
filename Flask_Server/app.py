@@ -52,7 +52,6 @@ def send_to_ollama(question):
     response = requests.post(ollama_url, json = payload)
 
     if response.status_code == 200:
-        print(response)
         return response.json()
     else:
         return {"error": "Failed to get a response from ollama"}
