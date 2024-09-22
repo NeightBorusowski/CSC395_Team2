@@ -1,5 +1,6 @@
 # app.py
-from flask import Flask, render_template, request, jsonify, requests
+from flask import Flask, render_template, request, jsonify
+import requests
 #from Ollama.ollama import send_to_ollama
 app = Flask(__name__)
 
