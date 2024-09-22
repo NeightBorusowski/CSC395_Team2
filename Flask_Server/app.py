@@ -52,8 +52,6 @@ def send_to_ollama(question):
     except requests.exceptions.RequestException as e:
         return {"error": f"Failed to get a response from Ollama: {str(e)}"}
 
-
-# add function to send data returned from llm to frontend
 # in this function I am sending data in json format to the frontend
 def return_data(ollama_response):
     # returns an error if the ollama response is incorrect
