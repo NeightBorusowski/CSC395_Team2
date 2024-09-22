@@ -51,6 +51,7 @@ def send_to_ollama(question):
     response = requests.post(ollama_url, json = payload)
 
     if response.status_code == 200:
+        print(response)
         return response.json()
     else:
         return {"error": "Failed to get a response from ollama"}
@@ -70,3 +71,4 @@ def return_data(ollama_response):
 # hosts the website locally
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=8080)
+
