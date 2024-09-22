@@ -292,22 +292,24 @@
     }
 
     //function to recive data from backend
-    function recieve_Data(newName, newTag, newRecipe){
+    function recieve_Data(){
         fetch('/get_data')
         .then(response => response.json())
         .then(data => {
-            console.log('Data received:', data);
+            if (data.status === "success") {
+                console.log('Data received:', data);
+                const recipeName = data.data.name;
+                const recipeTagline = data.data.tagline;
+                const recipeText = data.data.recipeText;
 
-            //adjust if backend sends data differently
-            const recipeName = data.name;
-            const recipeTagline = data.tagline;
-            const recipeText = data.recipeText;
-
-            //update the frontend
-            updateRecipe(recipeName, recipeTagline, recipeText);
+                // Update the frontend with the received data
+                updateRecipe(recipeName, recipeTagline, recipeText);
+            } else {
+                console.error('Error:', data.message);
+            }
         })
         .catch(error => console.error('Error:', error));
-        }
+}
 
     //function to update the recipe content from another application
     function updateRecipe(name, tagline, recipeText) {
