@@ -34,7 +34,7 @@ def create_question():
     var2 = "Noodles and Cheese"
 
     #formatting the question
-    question = f"Create me a recipe using the company {var1} with these ingredients, {var2}"
+    question = f"Create me a recipe using the company, {var1} with these ingredients, {var2}"
 
     #sending the question to the ollama container
     ollama_response = send_to_ollama(question)
