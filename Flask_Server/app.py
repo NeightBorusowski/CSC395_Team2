@@ -35,7 +35,7 @@ def create_question(company, ingredients):
     ollama_response = send_to_ollama(question)
 
     #returning the response
-    return ({"ollama_response:", ollama_response})
+    return ({"ollama_response": ollama_response})
 
 def send_to_ollama(question):
 
@@ -44,7 +44,7 @@ def send_to_ollama(question):
 
     #send the formatted question to ollama using a POST request
     payload = {"prompt": question}
-    
+
     try:
         response = requests.post(ollama_url, json=payload)
         response.raise_for_status()  # Raise error if the status code is not 200
