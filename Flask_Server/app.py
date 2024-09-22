@@ -53,7 +53,6 @@ def send_to_ollama(question):
         return {"error": f"Failed to get a response from Ollama: {str(e)}"}
 
 # in this function I am sending data in json format to the frontend
-@app.route("/get_data", method= ["GET"])
 def return_data(ollama_response):
     # returns an error if the ollama response is incorrect
     if "error" in ollama_response:
