@@ -23,7 +23,7 @@ def submit_data():
     question_response = create_question(company, ingredients)
     
     # Return the response from Ollama or handle failure
-    return_data(question_response)
+    return return_data(question_response)
 
 #function to send data to llm and receive back response
 def create_question(company, ingredients):
