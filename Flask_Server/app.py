@@ -19,20 +19,14 @@ def submit_data():
     llm = data.get('llm')
 
     # Process the received data
-    #print(f"Received data: Company: {company}, Ingredients: {ingredients}, LLM: {llm}")
-    create_question(company, ingredients)
-    # Respond with a success message or further processing results
-    #return jsonify({'status': 'success', 'message': 'Data received successfully!'})
+    # Pass the data to the function that handles the request to Ollama
+    question_response = create_question(company, ingredients)
+    
+    # Return the response from Ollama or handle failure
+    return jsonify(question_response)
 
-#In this function, im creating a request to send to ollama.py (formatting a question with the variables to
-#send too ollama.py)
-
-@app.route("/create_question", methods=["GET"])
 #function to send data to llm and receive back response
 def create_question(company, ingredients):
-    #temp variables to just try and get a response first before using the json
-    #var1 = "Kraft"
-    #var2 = "Noodles and Cheese"
 
     #formatting the question
     question = f"Create me a recipe using the company, {company} with these ingredients, {ingredients}"
@@ -41,20 +35,22 @@ def create_question(company, ingredients):
     ollama_response = send_to_ollama(question)
 
     #returning the response
-    return jsonify({"ollama's response:", ollama_response})
+    return ({"ollama_response:", ollama_response})
 
 def send_to_ollama(question):
+
     #Define Ollama container's endpoint (running on port 5000)
     ollama_url = "https://ollama_container:5000/generate"
 
     #send the formatted question to ollama using a POST request
     payload = {"prompt": question}
-    response = requests.post(ollama_url, json = payload)
-
-    if response.status_code == 200:
-        return response.json()
-    else:
-        return {"error": "Failed to get a response from ollama"}
+    
+    try:
+        response = requests.post(ollama_url, json=payload)
+        response.raise_for_status()  # Raise error if the status code is not 200
+        return response.json()  # Return the response from Ollama
+    except requests.exceptions.RequestException as e:
+        return {"error": f"Failed to get a response from Ollama: {str(e)}"}
 
 
 # add function to send data returned from llm to frontend
