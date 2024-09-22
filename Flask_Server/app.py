@@ -27,7 +27,7 @@ def submit_data():
 #In this function, im creating a request to send to ollama.py (formatting a question with the variables to
 #send too ollama.py)
 
-@app.route("create_question", methods=["GET"])
+@app.route("/create_question", methods=["GET"])
 #function to send data to llm and receive back response
 def create_question():
     #temp variables to just try and get a response first before using the json
