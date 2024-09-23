@@ -1,7 +1,16 @@
-version: '3.8'
-
 services:
-  flask-app:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-container
+    restart: on-failure
+    volumes:
+      - .ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - app-network
+
+  flask-server:
     build:
       context: ./  #build flask app
       dockerfile: Dockerfile
@@ -9,27 +18,12 @@ services:
     image: recipe-name-container:latest
     ports:
       - "8080:8080"
-    depends_on:
-      - ollama-container
     volumes:
       - .:/app
     networks:
       - app-network
 
     #command: gunicorn --bind 0.0.0.0:8080 app:app
-
-  ollama-container:
-    build:
-      context: ./Ollama #build ollama container
-      dockerfile: Dockerfile
-    container_name: ollama-container
-    image: ollama-container:latest
-    ports:
-      - "11434:11434"
-    volumes:
-      - ollama:/root/.ollama
-    networks:
-      - app-network
 
 networks:
   app-network:
