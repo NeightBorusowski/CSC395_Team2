@@ -53,6 +53,7 @@
 
         html {
             overflow: hidden;
+            scroll-behavior: smooth;
         }
 
         body {
@@ -90,18 +91,6 @@
             height: 100%;
             min-height: 322px;
             overflow: visible;
-        }
-
-        .logo {
-            position: absolute;
-            z-index: 1;
-            top: 3rem;
-            left: 2rem;
-            display: block;
-            width: 9vmax;
-            height: 9vmax;
-            min-width: 50px;
-            min-height: 50px;
         }
 
         .waves {
@@ -154,16 +143,6 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid #555;
-        }
-
-        .logo {
-            font-size: 24px;
-            font-weight: bold;
-        }
-
-        .logo a {
-            color: #fff;
-            text-decoration: none;
         }
 
         .container {
@@ -239,160 +218,161 @@
     </style>
 
     <style>
+
         .arrow-wrap {
-  position:absolute;
-  z-index:1;
-  left:50%;
-  top:-5em;
-  margin-left:-5em;
-  background:#111;
-  width:10em;
-  height:10em;
-  padding:4em 2em;
-  border-radius:50%;
-  font-size:0.5em;
-  display:block;
-  box-shadow:0px 0px 5px 0px #333;
-}
+            position:absolute;
+            z-index:1;
+            left:50%;
+            top:-5em;
+            top: 80%;
+            margin-left:-5em;
+            background:#111;
+            width:10em;
+            height:10em;
+            padding:4em 2em;
+            border-radius:50%;
+            font-size:0.5em;
+            display:block;
+            box-shadow:0px 0px 5px 0px #333;
+        }
 
-.arrow {
-  float:left;
-  position:relative;
-  width: 0px;
-height: 0px;
-border-style: solid;
-border-width: 3em 3em 0 3em;
-border-color: #ffffff transparent transparent transparent;
-  -webkit-transform:rotate(360deg)
-}
+            .arrow {
+            float:left;
+            position:relative;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 3em 3em 0 3em;
+            border-color: #ffffff transparent transparent transparent;
+            -webkit-transform:rotate(360deg)
+        }
 
-.arrow:after {
-  content:'';
-  position:absolute;
-  top:-3.2em;
-  left:-3em;
-  width: 0px;
-height: 0px;
-border-style: solid;
-border-width: 3em 3em 0 3em;
-border-color: #111 transparent transparent transparent;
-  -webkit-transform:rotate(360deg)
-}
-
-
-.hint {
-  position:absolute;
-  top:0.6em;
-  width:100%;
-  left:0;
-  font-size:2em;
-  font-style:italic;
-  text-align:center;
-  color:#fff;
-  opacity:0;
-}
+            .arrow:after {
+            content:'';
+            position:absolute;
+            top:-3.2em;
+            left:-3em;
+            width: 0px;
+            height: 0px;
+            border-style: solid;
+            border-width: 3em 3em 0 3em;
+            border-color: #111 transparent transparent transparent;
+            -webkit-transform:rotate(360deg)
+        }
 
 
-.arrow-wrap:hover .hint {
-  opacity:1;
-}
+            .hint {
+            position:absolute;
+            top:0.6em;
+            width:100%;
+            left:0;
+            font-size:2em;
+            font-style:italic;
+            text-align:center;
+            color:#fff;
+            opacity:0;
+        }
 
 
-  @-webkit-keyframes arrows {
-    0% { top:0; }
-    10% { top:12%; }
-    20% { top:0; }
-    30% { top:12%; }
-    40% { top:-12%; }
-    50% { top:12%; }
-    60% { top:0; }
-    70% { top:12%; }
-    80% { top:-12%; }
-    90% { top:12%; }
-    100% { top:0; }
-  }
-  
-  .arrow-wrap .arrow {
-    -webkit-animation: arrows 2.8s 0.4s;
-    -webkit-animation-delay: 3s;
-  }
+            .arrow-wrap:hover .hint {
+            opacity:1;
+        }
+
+
+            @-webkit-keyframes arrows {
+                0% { top:0; }
+                10% { top:12%; }
+                20% { top:0; }
+                30% { top:12%; }
+                40% { top:-12%; }
+                50% { top:12%; }
+                60% { top:0; }
+                70% { top:12%; }
+                80% { top:-12%; }
+                90% { top:12%; }
+                100% { top:0; }
+        }
+            
+            .arrow-wrap .arrow {
+                -webkit-animation: arrows 2.8s 0.4s;
+                -webkit-animation-delay: 3s;
+        }
 
     </style>
 
-<script>
-    let selectedLLM = '';
+    <script>
+        let selectedLLM = '';
 
-    function handleSubmit(event) {
-        //Prevent form submission to keep page from refreshing
-        event.preventDefault();
+        function handleSubmit(event) {
+            //Prevent form submission to keep page from refreshing
+            event.preventDefault();
 
-        //Get the selected company value and the text from the textarea
-        const company = document.getElementById('company').value;
-        const ingredients = document.getElementById('ingredients').value;
+            //Get the selected company value and the text from the textarea
+            const company = document.getElementById('company').value;
+            const ingredients = document.getElementById('ingredients').value;
 
-        //data to be held for passsing in to backend
-        const data = {
-            company: company,
-            ingredients: ingredients,
-            llm: selectedLLM
-        };
+            //data to be held for passsing in to backend
+            const data = {
+                company: company,
+                ingredients: ingredients,
+                llm: selectedLLM
+            };
 
-        //Send the data to Flask server via POST request
-        fetch('/submit_data', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json'
-                },
-                //Convert JS object to JSON string
-                body: JSON.stringify(data)
+            //Send the data to Flask server via POST request
+            fetch('/submit_data', {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    },
+                    //Convert JS object to JSON string
+                    body: JSON.stringify(data)
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log('Success:', data);
+                    alert('Data successfully sent to Flask!');
+                    if (data.status === "success") {
+                        //const recipeName = data.data.name;
+                        //const recipeTagline = data.data.tagline;
+                        const recipeText = data.response;
+
+                    // Update the frontend with the received data
+                    updateRecipe(/*recipeName, recipeTagline, */recipeText);
+                } else {
+                    alert('Error: ' + data.message);
+                }
             })
-            .then(response => response.json())
-            .then(data => {
-                console.log('Success:', data);
-                alert('Data successfully sent to Flask!');
-                if (data.status === "success") {
-                    //const recipeName = data.data.name;
-                    //const recipeTagline = data.data.tagline;
-                    const recipeText = data.response;
+            .catch((error) => {
+                console.error('Error:', error);
+            });
 
-                // Update the frontend with the received data
-                updateRecipe(/*recipeName, recipeTagline, */recipeText);
-            } else {
-                alert('Error: ' + data.message);
-            }
-        })
-        .catch((error) => {
-            console.error('Error:', error);
-        });
+            // Reset the textarea
+            document.getElementById('ingredients').value = '';
+        }
 
-    // Reset the textarea
-    document.getElementById('ingredients').value = '';
-}
+        //allows llms to be selected and passed to backend
+        function selectLLM(button) {
+            // Remove selected class from all buttons
+            const buttons = document.querySelectorAll('.llm-buttons button');
+            buttons.forEach(btn => btn.classList.remove('selected'));
 
-    //allows llms to be selected and passed to backend
-    function selectLLM(button) {
-        // Remove selected class from all buttons
-        const buttons = document.querySelectorAll('.llm-buttons button');
-        buttons.forEach(btn => btn.classList.remove('selected'));
+            // Add selected class to the clicked button
+            button.classList.add('selected');
 
-        // Add selected class to the clicked button
-        button.classList.add('selected');
+            // Save the selected LLM button text
+            selectedLLM = button.innerText;
+        }
 
-        // Save the selected LLM button text
-        selectedLLM = button.innerText;
-    }
-
-    //function to update the recipe content from another application
-    function updateRecipe(/*name, tagline, */recipeText) {
-            //document.getElementById('recipe-name').textContent = name;
-            //document.getElementById('recipe-tagline').textContent = tagline;
+        //function to update the recipe content from another application
+        function updateRecipe(/*name, tagline, */recipeText) {
             document.getElementById('recipe-content').textContent = recipeText;
-    }
+        }
 
-</script>
+    </script>
 
 </head>
 <body>
+
     <a class="group" id="page-wrap" target="_blank" rel="external noopener">
         <div id="inner-wrap">
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" width="1440" height="321.75" viewBox="0 0 960 214.5" preserveAspectRatio="xMinYMid meet">
@@ -419,16 +399,13 @@ border-color: #111 transparent transparent transparent;
         </div>
     </a>
 
-    
-
     <a class="arrow-wrap" href="#content">
         <span class="arrow"></span>
-        <!--<span class="hint">scroll</span>-->
     </a>
 
-    <div class="container">
+    <div class="container" >
         <!-- Left side of GUI -->
-        <div class="left">
+        <div class="left"id = "content">
             <form onsubmit="handleSubmit(event)">
                 <!-- Company selection dropdown -->
                 <label for="company">Company</label>
