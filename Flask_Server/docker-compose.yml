@@ -1,10 +1,11 @@
-version: '3.4'
+version: '3.8'
 
 services:
   flask-app:
     build:
       context: ./  #build flask app
       dockerfile: Dockerfile
+    container_name: recipe-app-container
     ports:
       - "8080:8080"
     depends_on:
@@ -18,8 +19,9 @@ services:
     build:
       context: ./Ollama #build ollama container
       dockerfile: Dockerfile
+    container_name: ollama-container
     ports:
-      - "5000:5000"
+      - "11434:11434"
     networks:
       - app-network
 

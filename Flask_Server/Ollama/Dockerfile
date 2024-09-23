@@ -1,8 +1,6 @@
 # For more information, please refer to https://aka.ms/vscode-docker-python
 FROM python:3-slim
 
-EXPOSE 5000
-
 # Keeps Python from generating .pyc files in the container
 ENV PYTHONDONTWRITEBYTECODE=1
 
@@ -21,7 +19,7 @@ USER appuser
 RUN pip install -r requirements.txt
 
 # Expose port 5000 for Ollama service
-EXPOSE 5000
+EXPOSE 11434
 
 # During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
 CMD ["python", "ollama.py"]
