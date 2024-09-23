@@ -270,9 +270,9 @@
                 console.log('Success:', data);
                 alert('Data successfully sent to Flask!');
                 if (data.status === "success") {
-                const recipeName = data.data.name;
-                const recipeTagline = data.data.tagline;
-                const recipeText = data.data.recipeText;
+                    const recipeName = data.data.name;
+                    const recipeTagline = data.data.tagline;
+                    const recipeText = data.data.recipeText;
 
                 // Update the frontend with the received data
                 updateRecipe(recipeName, recipeTagline, recipeText);
