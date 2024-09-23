@@ -11,6 +11,8 @@ services:
       - "8080:8080"
     depends_on:
       - ollama-container
+    volumes:
+      - .:/app
     networks:
       - app-network
 
@@ -24,9 +26,15 @@ services:
     image: ollama-container:latest
     ports:
       - "11434:11434"
+    volumes:
+      - ollama:/root/.ollama
     networks:
       - app-network
 
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  ollama:
+    driver: local
