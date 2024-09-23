@@ -3,39 +3,39 @@ import requests
 
 app = Flask(__name__)
 
-#nonfunctioning function used as example 
-def recievedata(company, ingredients):
-    print(f"company {company} ingredients {ingredients}")
-
-#This is where ollama's API endpoint is
-OLLAMA_MODEL_API = "http://localhost:5000/generate"
+# This is where Ollama's API endpoint is
+OLLAMA_MODEL_API = "http://ollama-container:11434/generate"  # Changed to avoid port conflict
 
 @app.route('/generate', methods=['POST'])
 def generate_response():
-    #Getting the JSON data from the request
+    # Getting the JSON data from the request
     data = request.get_json()
 
-    #extracting the prompt (question) from the incoming request
+    # Validating the input data
+    if not data or 'prompt' not in data:
+        return jsonify({"error": "Invalid request, 'prompt' is required"}), 400
+
+    # Extracting the prompt (question) from the incoming request
     question = data.get('prompt', '')
 
-    #sending the question to ollama
+    # Sending the question to Ollama
     ollama_response = call_ollama_model(question)
 
-    #returning the response as JSON
+    # Returning the response as JSON
     return jsonify({"response": ollama_response})
 
 def call_ollama_model(prompt):
-    #prepare the payload for the ollama model
+    # Prepare the payload for the Ollama model
     payload = {
-        "model": "llama2",  #llama2 is the model we intend to use for this project
+        "model": "llama2",  # llama2 is the model we intend to use for this project
         "prompt": prompt
     }
 
     try:
-        #send a request to the ollama model API
-        response = requests.post(OLLAMA_MODEL_API, json = payload)
+        # Send a request to the Ollama model API
+        response = requests.post(OLLAMA_MODEL_API, json=payload)
 
-        #if response is successful and a response is generated, return the response
+        # If response is successful and a response is generated, return the response
         if response.status_code == 200:
             response_data = response.json()
             return response_data.get('generated_text', 'No text generated')
@@ -43,10 +43,7 @@ def call_ollama_model(prompt):
             return f"Error: {response.status_code} - {response.text}"
 
     except requests.exceptions.RequestException as e:
-        return f"Request to the ollama model has failed: {e}"
-
-
-
+        return f"Request to the Ollama model has failed: {e}"
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000)
+    app.run(host='0.0.0.0', port=11434)
