@@ -23,8 +23,6 @@ services:
     networks:
       - app-network
 
-    #command: gunicorn --bind 0.0.0.0:8080 app:app
-
 networks:
   app-network:
     driver: bridge

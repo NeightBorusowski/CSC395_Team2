@@ -1,38 +1,33 @@
-version: '3.4'
+version: '3.8'
 
 services:
-  flask-app:
+  ollama:
+    image: ollama/ollama
+    container_name: ollama-container
+    restart: on-failure
+    volumes:
+      - .ollama:/root/.ollama
+    ports:
+      - "11434:11434"
+    networks:
+      - app-network
+
+  flask-server:
     build:
-      context: ./
+      context: ./  # Build Flask app
       dockerfile: Dockerfile
+    container_name: recipe-app-container
+    image: recipe-name-container:latest
     ports:
       - "8080:8080"
-    depends_on:
-      - ollama-container
+    volumes:
+      - .:/app
     networks:
       - app-network
     environment:
-      FLASK_APP: "app.py"
-      FLASK_ENV: "development"
-      PYTHONUNBUFFERED: 1
-    volumes:
-      - ./:/app  
-    command: flask run --host=0.0.0.0 --port=8080 --no-debugger --reload
-    entrypoint: ["python3", "-m", "debugpy", "--listen", "0.0.0.0:5678", "--wait-for-client", "app.py"]
-    #debugger listens on port 5678, waiting for the debugger to attach
-
-  ollama-container:
-    build:
-      context: ./Ollama
-      dockerfile: Dockerfile
-    ports:
-      - "5000:5000"
-    networks:
-      - app-network
-    volumes:
-      - ./Ollama:/ollama
-    command: python3 -m debugpy --listen 0.0.0.0:5679 --wait-for-client ollama.py
-    #debugger listens on port 5679 for Ollama service
+      - FLASK_ENV=development  # Enable development mode
+      - FLASK_DEBUG=1  # Enable debug mode
+    command: flask run --host=0.0.0.0 --port=8080  # Start Flask in debug mode
 
 networks:
   app-network:
