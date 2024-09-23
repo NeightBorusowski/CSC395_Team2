@@ -25,6 +25,7 @@ def submit_data():
 def create_question(company, ingredients):
     # Formatting the question
     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
+    print(question)
 
     # Sending the question to the Ollama container
     return generate_ollama_response(question)
@@ -36,12 +37,12 @@ def generate_ollama_response(question):
     full_answer = ''
     for chunk in stream:
         full_answer += chunk['message']['content']
-
+    print(full_answer)
     return full_answer.strip()  # Strip any leading/trailing whitespace
 
 @app.route('/')
 def home():
     return render_template('index.html')
 
-if __name__ == "__main__":
-    app.run(debug=True)
+if __name__ == '__main__':
+    app.run(host='0.0.0.0', port=5000)

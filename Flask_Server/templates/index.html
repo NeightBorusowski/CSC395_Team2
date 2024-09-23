@@ -270,12 +270,12 @@
                 console.log('Success:', data);
                 alert('Data successfully sent to Flask!');
                 if (data.status === "success") {
-                    const recipeName = data.data.name;
-                    const recipeTagline = data.data.tagline;
-                    const recipeText = data.data.recipeText;
+                    //const recipeName = data.data.name;
+                    //const recipeTagline = data.data.tagline;
+                    const recipeText = data.response;
 
                 // Update the frontend with the received data
-                updateRecipe(recipeName, recipeTagline, recipeText);
+                updateRecipe(/*recipeName, recipeTagline, */recipeText);
             } else {
                 alert('Error: ' + data.message);
             }
@@ -302,9 +302,9 @@
     }
 
     //function to update the recipe content from another application
-    function updateRecipe(name, tagline, recipeText) {
-            document.getElementById('recipe-name').textContent = name;
-            document.getElementById('recipe-tagline').textContent = tagline;
+    function updateRecipe(/*name, tagline, */recipeText) {
+            //document.getElementById('recipe-name').textContent = name;
+            //document.getElementById('recipe-tagline').textContent = tagline;
             document.getElementById('recipe-content').textContent = recipeText;
     }
 
@@ -383,12 +383,6 @@
             </div>
         </div>
     </div>
-
-    <script>
-        // Example of dynamically updating the content
-        // You can replace these with real data or call this function from another script
-        updateRecipe("Chocolate Cake", "Delicious homemade cake", "1. Mix ingredients...\n2. Bake for 30 minutes...");
-    </script>
 
 </body>
 </html>
