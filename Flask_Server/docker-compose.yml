@@ -6,6 +6,7 @@ services:
       context: ./  #build flask app
       dockerfile: Dockerfile
     container_name: recipe-app-container
+    image: recipe-name-container:latest
     ports:
       - "8080:8080"
     depends_on:
@@ -20,6 +21,7 @@ services:
       context: ./Ollama #build ollama container
       dockerfile: Dockerfile
     container_name: ollama-container
+    image: ollama-container:latest
     ports:
       - "11434:11434"
     networks:
