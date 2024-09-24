@@ -36,11 +36,13 @@ def generate_ollama_response(question):
     for chunk in stream:
         full_answer += chunk['message']['content']
     print(full_answer)
-    return full_answer.strip()
+    #return format_response(full_answer)
+    return full_answer
 
-def format_response(answer):
-    formatedAnswer = ''
-    return formatedAnswer
+def format_response(response):
+    response = response.replace("```","")
+    lines = response.split('\n')
+    return '\n'.join(lines[1:-1])
 
 @app.route('/')
 def home():
