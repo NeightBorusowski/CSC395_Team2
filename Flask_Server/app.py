@@ -13,9 +13,7 @@ def submit_data():
 
     company = data['company']
     ingredients = [data['ingredients']]
-    llm = data.get('llm', 'llama2')  # Optional field with default model
-
-    # Process the received data
+    llm = data.get('llm', 'llama2')
     try:
         question_response = create_question(company, ingredients)
         return jsonify({"status": "success", "response": question_response}), 200
@@ -23,11 +21,11 @@ def submit_data():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 def create_question(company, ingredients):
-    # Formatting the question
+    #format question
     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
     print(question)
 
-    # Sending the question to the Ollama container
+    #sending question to Ollama
     return generate_ollama_response(question)
 
 def generate_ollama_response(question):
@@ -38,7 +36,11 @@ def generate_ollama_response(question):
     for chunk in stream:
         full_answer += chunk['message']['content']
     print(full_answer)
-    return full_answer.strip()  # Strip any leading/trailing whitespace
+    return full_answer.strip()
+
+def format_response(answer):
+    formatedAnswer = ''
+    return formatedAnswer
 
 @app.route('/')
 def home():
