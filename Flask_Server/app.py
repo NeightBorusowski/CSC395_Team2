@@ -12,7 +12,7 @@ def submit_data():
         return jsonify({"status": "error", "message": "Invalid request, 'company' and 'ingredients' are required"}), 400
 
     company = data['company']
-    ingredients = data['ingredients']
+    ingredients = [data['ingredients']]
     llm = data.get('llm', 'llama2')  # Optional field with default model
 
     # Process the received data
