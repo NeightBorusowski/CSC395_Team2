@@ -23,14 +23,16 @@ class MyTestCase(unittest.TestCase):
             "llm": "llama2"
         }
 
-        # below is making a post request to /submit_data
+        # below is making a post request to /submit_data, json.dumps converts the sample to json string
         response = self.app.post('/submit_data', data = json.dumps(sample), content_type = 'application/json')
 
         # making several assertions to make sure the response is as expected. status_code 200 = success
         self.assertEqual(response.status_code, 200)
+        # response_data takes the data and converts to python dictionary
         response_data = json.loads(response.data)
         self.assertEqual(response_data['status'], 'success')
         self.assertEqual(response_data['response'], "Sample recipe response from LLM.")
+        # assert_called_once() object ensures the ollama response is called exactly one time
         mock_generate_ollama_response.assert_called_once()
 
     def test_submit_data_invalid_request(self):
