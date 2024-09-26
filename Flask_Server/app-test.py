@@ -20,7 +20,7 @@ class MyTestCase(unittest.TestCase):
         sample = {
             "company": "Sample Company",
             "ingredients": "bread, meat, cheese"
-            "llm": "llama2"
+            "llm": "llama3.2"
         }
 
         # below is making a post request to /submit_data, json.dumps converts the sample to json string
