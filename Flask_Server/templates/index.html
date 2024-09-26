@@ -151,11 +151,14 @@
             padding: 20px;
         }
 
+        
         .left, .right {
-            background-color: #878787;
+            background-color: rgba(135, 33, 144, 0.562);
             padding: 20px;
             border-radius: 5px;
-            border: 1px solid black;
+            border: 3px solid black;
+            font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+            
         }
 
         .left {
@@ -164,6 +167,7 @@
 
         .right {
             width: 60%;
+            padding-top: 1px;
         }
 
         select, textarea, input[type="text"], input[type="submit"] {
@@ -204,7 +208,7 @@
         .right h2 {
             margin-bottom: 10px;
         }
-
+        
         .recipe-box {
             background-color: white;
             padding: 10px;
@@ -232,7 +236,7 @@
             box-shadow:0px 0px 5px 0px #333;
         }
 
-            .arrow {
+        .arrow {
             float:left;
             position:relative;
             width: 0px;
@@ -243,7 +247,7 @@
             -webkit-transform:rotate(360deg)
         }
 
-            .arrow:after {
+        .arrow:after {
             content:'';
             position:absolute;
             top:-3.2em;
@@ -257,7 +261,7 @@
         }
 
 
-            .hint {
+        .hint {
             position:absolute;
             top:0.6em;
             width:100%;
@@ -270,12 +274,12 @@
         }
 
 
-            .arrow-wrap:hover .hint {
+        .arrow-wrap:hover .hint {
             opacity:1;
         }
 
 
-            @-webkit-keyframes arrows {
+        @-webkit-keyframes arrows {
                 0% { top:0; }
                 10% { top:12%; }
                 20% { top:0; }
@@ -289,7 +293,7 @@
                 100% { top:0; }
         }
             
-            .arrow-wrap .arrow {
+        .arrow-wrap .arrow {
                 -webkit-animation: arrows 2.8s 0.4s;
                 -webkit-animation-delay: 3s;
         }
@@ -408,9 +412,9 @@
                 <select id="company">
                     <option>Kraft</option>
                     <option>Heinz</option>
-                    <option>Sample Text3</option>
-                    <option>Sample Text4</option>
-                    <option>Sample Text5</option> 
+                    <option>Tyson</option>
+                    <option>Nestle</option>
+                    <option>General Mills</option> 
                 </select>
 
                 <!-- Ingredients editable text area -->
