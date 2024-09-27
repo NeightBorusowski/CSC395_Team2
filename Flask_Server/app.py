@@ -13,7 +13,7 @@ def submit_data():
 
     company = data['company']
     ingredients = [data['ingredients']]
-    llm = data.get('llm', 'llama3.2')
+    llm = data.get('llm', 'llama2')
     try:
         question_response = create_question(company, ingredients)
         return jsonify({"status": "success", "response": question_response}), 200
@@ -30,7 +30,7 @@ def create_question(company, ingredients):
 
 def generate_ollama_response(question):
     client = Client(host='http://host.docker.internal:11434')
-    stream = client.chat(model="llama3.2", messages=[{"role": "user", "content": question}], stream=True)
+    stream = client.chat(model="llama2", messages=[{"role": "user", "content": question}], stream=True)
     
     full_answer = ''
     for chunk in stream:
