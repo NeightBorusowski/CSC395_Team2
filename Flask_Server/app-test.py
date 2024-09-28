@@ -19,7 +19,7 @@ class MyTestCase(unittest.TestCase):
 
         sample = {
             "company": "Sample Company",
-            "ingredients": "bread, meat, cheese"
+            "ingredients": "bread, meat, cheese",
             "llm": "llama3.2"
         }
 
@@ -67,12 +67,12 @@ class MyTestCase(unittest.TestCase):
         mock_instance.chat.return_value = iter([{"message": {"content": "Recipe part 1"}},
                                                 {"message": {"content": " and part 2"}}])
 
-    question = "Sample question"
-    response = generate_ollama_response(question)
+        question = "Sample question"
+        response = generate_ollama_response(question)
 
-    # assertions
-    self.assertEqual(response, "Recipe part 1 and part 2")
-    mock_instance.chat.assert_called_once_with(model = "llama2", messages = [{"role": "user", "content": question}], stream = True)
+        # assertions
+        self.assertEqual(response, "Recipe part 1 and part 2")
+        mock_instance.chat.assert_called_once_with(model = "llama2", messages = [{"role": "user", "content": question}], stream = True)
 
 
 if __name__ == '__main__':
