@@ -1,7 +1,6 @@
 import unittest
 from unittest.mock import patch, MagicMock
 from venv import create
-
 from flask import Flask, jsonify
 import json
 from app import app, create_question, generate_ollama_response
