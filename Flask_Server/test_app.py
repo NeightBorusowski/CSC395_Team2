@@ -5,7 +5,7 @@ from flask import Flask, jsonify
 import json
 from app import app, create_question, generate_ollama_response
 
-class MyTestCase(unittest.TestCase):
+class test_case(unittest.TestCase):
     # the method below creates a test client for Flask
     def test_client(self):
         self.app = app.test_client()
