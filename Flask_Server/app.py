@@ -38,7 +38,7 @@ def generate_ollama_response(question):
     print(full_answer)
     #return format_response(full_answer)
     return full_answer
-
+#test
 def format_response(response):
     response = response.replace("```","")
     lines = response.split('\n')
