@@ -1,6 +1,5 @@
-import openai
 
-from flask import Flask, jsonify, request, render_template
+from flask import Flask, jsonify, request, render_template, requests
 from ollama import Client
 
 app = Flask(__name__)
@@ -47,30 +46,31 @@ def format_response(response):
     return '\n'.join(lines[1:-1])
 
 #extra credit, generating a respone with chat gpt
-openai.api_key = 'sk-9dNx3qA6CTN0IBfACuG0EzFsfGphGcbarbtFCBq5EzT3BlbkFJ5iUhxOi-dE_ffSBNJXycuyt9g9MM-rRPLNCrnm4zQA'
 
-@app.route('/chatGPT', methods=['POST'])
-def chatGPT():
-    data1 = request.get_json()
 
-    company1 = data1['company']
-    ingredients1 = [data1['ingredients']]
+def get_gpt_response(question, api_key):
+    url = "https://api.openai.com/v1/chat/completions"
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json",
+    }
 
-    question1 = f"Create a recipe using the company {company1} with these ingredients: {', '.join(ingredients1)}."
+    data = {
+        "model": "gpt-3.5-turbo",  # or "gpt-4" if you have access
+        "messages": [{"role": "user", "content": question}],
+        "max_tokens": 500,  # Adjust based on how long you want the response
+    }
 
-    # Make the request to OpenAI API
-    response = openai.Completion.create(
-        engine="gpt-3.5-turbo",  # or "gpt-4", etc.
-        prompt=question1,
-        max_tokens=500,
-        n=1,
-        stop=None,
-        temperature=0.7
-    )
+    response = requests.post(url, headers=headers, json=data)
 
-    # Get the response text from the OpenAI API
-    gpt_response = response.choices[0].text.strip()
-    print(gpt_response)
+    if response.status_code == 200:
+        response_data = response.json()
+        return response_data['choices'][0]['message']['content']
+    else:
+        return f"Error: {response.status_code}, {response.text}"
+
+
+#api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
 
 
 @app.route('/')
@@ -79,3 +79,5 @@ def home():
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
+   
+    
