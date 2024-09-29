@@ -7,7 +7,7 @@ from app import app, create_question, generate_ollama_response
 
 class MyTestCase(unittest.TestCase):
     # the method below creates a test client for Flask
-    def testClient(self):
+    def test_client(self):
         self.app = app.test_client()
         self.app.testing = True
 
