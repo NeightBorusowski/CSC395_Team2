@@ -3,9 +3,11 @@ from unittest.mock import patch, MagicMock
 from venv import create
 from flask import Flask, jsonify
 import json
+import requests
 from app import app, create_question, generate_ollama_response
+from app import get_gpt_response
 
-class MyTestCase(unittest.TestCase):
+class TestOllamaCases(unittest.TestCase):
     # the method below creates a test client for Flask
     def setUp(self):
         self.app = app.test_client()
@@ -73,6 +75,66 @@ class MyTestCase(unittest.TestCase):
         self.assertEqual(response, "Recipe part 1 and part 2")
         mock_instance.chat.assert_called_once_with(model = "llama2", messages = [{"role": "user", "content": question}], stream = True)
 
+class TestGPTCases(unittest.TestCase):
+
+    @patch('app.requests.post') # mocks requests.post
+    def test_get_gpt_response_success(self, mock_post):
+        # below simulates successful API response, with the return value
+        # modelling API response format
+        mock_post.return_value.status_code = 200
+        mock_post.return_value.json.return_value = {
+            "choices": [
+            {
+                "message": {
+                    "content": "This is a test response from GPT-3.5"
+                }
+            }
+        ]
+    }
+
+        question = "What is the definition of AI?"
+        api_key = "test-api-key"
+
+        response = get_gpt_response(question, api_key)
+
+        self.assertEqual(response, "This is a test response from GPT-3.5")
+
+        # below checks proper URL, headers, data
+        mock_post.assert_called_once_with("https://api.openai.com/v1/chat/completions",
+                                          headers = {
+                                              "Authorization": f"Bearer {api_key}",
+                                              "Content-Type": "application/json",
+                                          },
+                                          json={
+                                              "model": "gpt-3.5-turbo",
+                                              "messages": [{"role": "user", "content": question}],
+                                              "max_tokens": 500,
+                                          }
+                                          )
+
+    @patch('app.requests.post')
+    def test_get_gpt_response_api_error(self, mock_post):
+        mock_post.return_value.status_code = 401
+        mock_post.return_valaue.text = "Unauthorized"
+
+        question = "What is the definition of AI?"
+        api_key = "invalid-api-key"
+
+        response = get_gpt_response(question, api_key)
+
+        self.assertEqual(response, "Error: 401, Unauthorized")
+
+    @patch('app.requests.post')
+    def test_get_gpt_response_network_error(self, mock_post):
+        # below simulates a network error
+        mock_post.side_effect = requests.exceptions.RequestException("Network error")
+
+        question = "What is the definition of AI?"
+        api_key = "test-api-key"
+
+        # below checks if network error is raised correctly
+        with self.assertRaises(requests.exceptions.RequestException):
+            get_gpt_response(question, api_key)
 
 if __name__ == '__main__':
     unittest.main()
