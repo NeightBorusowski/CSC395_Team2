@@ -26,7 +26,7 @@ def submit_data():
 
 
 
-
+#commented out, try refactoring to use one create question func below using if logic
 # def create_question1(company, ingredients):
 #     #format question
 #     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
