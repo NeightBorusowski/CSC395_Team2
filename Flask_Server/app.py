@@ -18,7 +18,7 @@ def submit_data():
     llm = data.get('llm', 'llama2')
 
     try:
-        question_response = create_question(company, ingredients)
+        question_response = create_question(company, ingredients,llm)
         return jsonify({"status": "success", "response": question_response}), 200       
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
@@ -26,23 +26,26 @@ def submit_data():
 
 
 
+#commented out, try refactoring to use one create question func below using if logic
+# def create_question1(company, ingredients):
+#     #format question
+#     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
+#     print(question)
 
-def create_question1(company, ingredients):
+#     #sending question to Ollama
+#     return get_gpt_response(question, api_key)
+
+
+def create_question(company, ingredients, llm):
     #format question
     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
     print(question)
 
-    #sending question to Ollama
-    return get_gpt_response(question, api_key)
-
-
-def create_question(company, ingredients):
-    #format question
-    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
-    print(question)
-
-    #sending question to Ollama
-    return generate_ollama_response(question)
+    #sending question to Ollama or any llm chosen
+    if llm is "ollama":
+        return generate_ollama_response(question)
+    elif llm is "chatgpt":
+        return get_gpt_response(question, api_key)
 
 def generate_ollama_response(question):
     client = Client(host='http://host.docker.internal:11434')
