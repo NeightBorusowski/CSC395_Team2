@@ -1,3 +1,5 @@
+import openai
+
 from flask import Flask, jsonify, request, render_template
 from ollama import Client
 
@@ -38,11 +40,38 @@ def generate_ollama_response(question):
     print(full_answer)
     #return format_response(full_answer)
     return full_answer
-#test
+
 def format_response(response):
     response = response.replace("```","")
     lines = response.split('\n')
     return '\n'.join(lines[1:-1])
+
+#extra credit, generating a respone with chat gpt
+openai.api_key = 'sk-9dNx3qA6CTN0IBfACuG0EzFsfGphGcbarbtFCBq5EzT3BlbkFJ5iUhxOi-dE_ffSBNJXycuyt9g9MM-rRPLNCrnm4zQA'
+
+@app.route('/chatGPT', methods=['POST'])
+def chatGPT():
+    data1 = request.get_json()
+
+    company1 = data1['company']
+    ingredients1 = [data1['ingredients']]
+
+    question1 = f"Create a recipe using the company {company1} with these ingredients: {', '.join(ingredients1)}."
+
+    # Make the request to OpenAI API
+    response = openai.Completion.create(
+        engine="gpt-3.5-turbo",  # or "gpt-4", etc.
+        prompt=question1,
+        max_tokens=500,
+        n=1,
+        stop=None,
+        temperature=0.7
+    )
+
+    # Get the response text from the OpenAI API
+    gpt_response = response.choices[0].text.strip()
+    print(gpt_response)
+
 
 @app.route('/')
 def home():
