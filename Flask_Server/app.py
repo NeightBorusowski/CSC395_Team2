@@ -1,5 +1,6 @@
 
-from flask import Flask, jsonify, request, render_template, requests
+from flask import Flask, jsonify, request, render_template
+import requests
 from ollama import Client
 
 app = Flask(__name__)

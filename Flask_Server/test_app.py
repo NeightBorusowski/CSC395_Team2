@@ -5,9 +5,9 @@ from flask import Flask, jsonify
 import json
 from app import app, create_question, generate_ollama_response
 
-class test_case(unittest.TestCase):
+class MyTestCase(unittest.TestCase):
     # the method below creates a test client for Flask
-    def test_client(self):
+    def setUp(self):
         self.app = app.test_client()
         self.app.testing = True
 
@@ -19,7 +19,7 @@ class test_case(unittest.TestCase):
         sample = {
             "company": "Sample Company",
             "ingredients": "bread, meat, cheese",
-            "llm": "llama3.2"
+            "llm": "llama2"
         }
 
         # below is making a post request to /submit_data, json.dumps converts the sample to json string
@@ -57,7 +57,7 @@ class test_case(unittest.TestCase):
         response = create_question(company, ingredients)
 
         self.assertEqual(response, "Recipe from Ollama")
-        mock_generate_ollama_response.assert_called_once_with("Create a recipe using the company 'Test Company' with these ingredients: cheese, pasta.")
+        mock_generate_ollama_response.assert_called_once_with("Create a recipe using the company Test Company with these ingredients: cheese, pasta.")
 
     @patch('app.Client')
     def test_generate_ollama_response(self, mock_client):
