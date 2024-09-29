@@ -16,11 +16,25 @@ def submit_data():
     company = data['company']
     ingredients = [data['ingredients']]
     llm = data.get('llm', 'llama2')
+
     try:
         question_response = create_question(company, ingredients)
-        return jsonify({"status": "success", "response": question_response}), 200
+        return jsonify({"status": "success", "response": question_response}), 200       
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
+
+
+
+
+
+def create_question1(company, ingredients):
+    #format question
+    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
+    print(question)
+
+    #sending question to Ollama
+    return get_gpt_response(question, api_key)
+
 
 def create_question(company, ingredients):
     #format question
@@ -71,7 +85,7 @@ def get_gpt_response(question, api_key):
         return f"Error: {response.status_code}, {response.text}"
 
 
-#api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
+api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
 
 
 @app.route('/')

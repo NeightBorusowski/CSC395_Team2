@@ -160,7 +160,7 @@
             border-radius: 5px;
             border: 1.5px solid white;
             font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-            
+            animation: colorChange 10s infinite;
         }
 
         .left {
@@ -170,6 +170,23 @@
         .right {
             width: 60%;
             padding-top: 1px;
+        }
+
+        @keyframes colorChange {
+
+            /*All colors match the color of wave animation, in chronological order*/
+            0% {
+                background-color: #333391; 
+            }
+            33% {
+                background-color: #E91388;
+            }
+            66% {
+                background-color: #EB2D2E;
+            }
+            100% {
+                background-color: #333391;
+            }
         }
 
         select, textarea, input[type="text"], input[type="submit"] {
