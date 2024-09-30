@@ -74,9 +74,7 @@ def get_gpt_response(question, api_key):
     else:
         return f"Error: {response.status_code}, {response.text}"
 
-
 api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
-
 
 @app.route('/')
 def home():

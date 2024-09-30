@@ -5,6 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href=’https://fonts.googleapis.com/css?family=Aclonica’ rel=’stylesheet’>
+    
     <title>Dev Chefs Cookbook</title>
 
     <style>
@@ -126,7 +127,6 @@
         }
 
         .group:before,
-
         .group:after {
             content: "";
             display: table;
@@ -153,7 +153,6 @@
             padding: 20px;
         }
 
-        
         .left, .right {
             background-color: rgba(135, 33, 144, 0.793);
             padding: 20px;
@@ -173,7 +172,6 @@
         }
 
         @keyframes colorChange {
-
             /*All colors match the color of wave animation, in chronological order*/
             0% {
                 background-color: #333391; 
@@ -279,7 +277,6 @@
             -webkit-transform:rotate(360deg)
         }
 
-
         .hint {
             position:absolute;
             top:0.6em;
@@ -292,29 +289,27 @@
             opacity:0;
         }
 
-
         .arrow-wrap:hover .hint {
             opacity:1;
         }
 
-
         @-webkit-keyframes arrows {
-                0% { top:0; }
-                10% { top:12%; }
-                20% { top:0; }
-                30% { top:12%; }
-                40% { top:-12%; }
-                50% { top:12%; }
-                60% { top:0; }
-                70% { top:12%; }
-                80% { top:-12%; }
-                90% { top:12%; }
-                100% { top:0; }
+            0% { top:0; }
+            10% { top:12%; }
+            20% { top:0; }
+            30% { top:12%; }
+            40% { top:-12%; }
+            50% { top:12%; }
+            60% { top:0; }
+            70% { top:12%; }
+            80% { top:-12%; }
+            90% { top:12%; }
+            100% { top:0; }
         }
             
         .arrow-wrap .arrow {
-                -webkit-animation: arrows 2.8s 0.4s;
-                -webkit-animation-delay: 3s;
+            -webkit-animation: arrows 2.8s 0.4s;
+            -webkit-animation-delay: 3s;
         }
 
     </style>
@@ -354,18 +349,19 @@
                         //const recipeTagline = data.data.tagline;
                         const recipeText = data.response;
 
-                    // Update the frontend with the received data
-                    updateRecipe(/*recipeName, recipeTagline, */recipeText);
-                } else {
+                        // Update the frontend with the received data
+                        updateRecipe(/*recipeName, recipeTagline, */recipeText);
+                    }else {
                     alert('Error: ' + data.message);
-                }
-            })
+                    }
+                })
             .catch((error) => {
                 console.error('Error:', error);
             });
 
             // Reset the textarea
             document.getElementById('ingredients').value = '';
+
         }
 
         //allows llms to be selected and passed to backend
@@ -390,7 +386,7 @@
 
 </head>
 <body>
-
+<!--classes for html wave animation-->
     <a class="group" id="page-wrap" target="_blank" rel="external noopener">
         <div id="inner-wrap">
             <svg class="waves" xmlns="http://www.w3.org/2000/svg" width="1440" height="321.75" viewBox="0 0 960 214.5" preserveAspectRatio="xMinYMid meet">
