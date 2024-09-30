@@ -18,23 +18,10 @@ def submit_data():
     llm = data.get('llm', 'llama2')
 
     try:
-        question_response = create_question(company, ingredients,llm)
-        return jsonify({"status": "success", "response": question_response}), 200       
+        question_response = create_question(company, ingredients, llm)
+        return jsonify({"status": "success", "response": question_response}), 200 
     except Exception as e:
         return jsonify({"status": "error", "message": str(e)}), 500
-
-
-
-
-#commented out, try refactoring to use one create question func below using if logic
-# def create_question1(company, ingredients):
-#     #format question
-#     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
-#     print(question)
-
-#     #sending question to Ollama
-#     return get_gpt_response(question, api_key)
-
 
 def create_question(company, ingredients, llm):
     #format question
@@ -42,9 +29,9 @@ def create_question(company, ingredients, llm):
     print(question)
 
     #sending question to Ollama or any llm chosen
-    if llm == "ollama":
+    if llm == "Ollama":
         return generate_ollama_response(question)
-    elif llm == "chatgpt":
+    elif llm == "ChatGPT":
         return get_gpt_response(question, api_key)
 
 def generate_ollama_response(question):
@@ -61,7 +48,7 @@ def generate_ollama_response(question):
 def format_response(response):
     response = response.replace("```","")
     lines = response.split('\n')
-    return '\n'.join(lines[1:-1])
+    return '\n'.join(lines[1:-2])
 
 #extra credit, generating a respone with chat gpt
 
