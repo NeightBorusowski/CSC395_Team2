@@ -98,7 +98,7 @@ class TestCases(unittest.TestCase):
         mock_post.assert_called_once()
 
 
-    @patch('app.requests.post')
+    @patch('app.requests.post') # mocks post
     def test_get_gpt_response_api_error(self, mock_post):
         mock_post.return_value.status_code = 401
         mock_post.return_value.text = "Unauthorized"
