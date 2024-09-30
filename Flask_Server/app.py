@@ -29,9 +29,9 @@ def create_question(company, ingredients, llm):
     print(question)
 
     #sending question to Ollama or any llm chosen
-    if llm is "Ollama":
+    if llm == "Ollama":
         return generate_ollama_response(question)
-    elif llm is "ChatGPT":
+    elif llm == "ChatGPT":
         return get_gpt_response(question, api_key)
 
 def generate_ollama_response(question):
