@@ -48,7 +48,7 @@ def generate_ollama_response(question):
 def format_response(response):
     response = response.replace("```","")
     lines = response.split('\n')
-    return '\n'.join(lines[1:-1])
+    return '\n'.join(lines[1:-2])
 
 #extra credit, generating a respone with chat gpt
 
