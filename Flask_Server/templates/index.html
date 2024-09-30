@@ -402,12 +402,18 @@
                 .then(data => {
                     console.log('Success:', data);
                     if (data.status === "success") {
-                        //const recipeName = data.data.name;
-                        //const recipeTagline = data.data.tagline;
-                        const recipeText = data.response;
+                        const response = data.response;
+                        const lines = response.split('\n')
+
+                        const Name = lines[0];
+                        const Tagline = lines[1];
+                        const recipeText = lines.slice(2).join('\n');
+
+                        const recipeName = Name.substring(7);
+                        const recipeTagline = Tagline.substring(9);
 
                         // Update the frontend with the received data
-                        updateRecipe(/*recipeName, recipeTagline, */recipeText);
+                        updateRecipe(recipeName, recipeTagline, recipeText);
                     }else {
                     alert('Error: ' + data.message);
                     }
@@ -435,7 +441,9 @@
         }
 
         //function to update the recipe content from another application
-        function updateRecipe(/*name, tagline, */recipeText) {
+        function updateRecipe(name, tagline, recipeText) {
+            document.getElementById('recipe-name').textContent = name;
+            document.getElementById('recipe-tagline').textContent = tagline;
             document.getElementById('recipe-content').textContent = recipeText;
         }
 
@@ -520,8 +528,8 @@
             <h2>Recipe</h2>
 
             <!-- Name and Tagline text areas -->
-            <p><strong>Name:</strong> <span id="recipe-name">N/A</span></p>
-            <p><strong>Tagline:</strong> <span id="recipe-tagline">N/A</span></p>
+            <h3><strong>Name:</strong> <span id="recipe-name">N/A</span></h3>
+            <h3><strong>Tagline:</strong> <span id="recipe-tagline">N/A</span></h3>
             <div class="recipe-box" id="recipe-content">
                 <!-- The recipe content will appear here -->
                 Recipe will be displayed here.

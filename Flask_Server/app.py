@@ -25,7 +25,7 @@ def submit_data():
 
 def create_question(company, ingredients, llm):
     #format question
-    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}."
+    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}. Format as:title, tagline, then ingredients and recipe. ensure no newline between title and tagline, but always a newline between tagline and ingrediants an recipe"
     print(question)
 
     #sending question to Ollama or any llm chosen
@@ -41,14 +41,7 @@ def generate_ollama_response(question):
     full_answer = ''
     for chunk in stream:
         full_answer += chunk['message']['content']
-    print(full_answer)
-    #return format_response(full_answer)
     return full_answer
-
-def format_response(response):
-    response = response.replace("```","")
-    lines = response.split('\n')
-    return '\n'.join(lines[1:-2])
 
 #extra credit, generating a respone with chat gpt
 
