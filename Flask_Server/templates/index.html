@@ -312,6 +312,63 @@
             -webkit-animation-delay: 3s;
         }
 
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            visibility: hidden;
+            transition: visibility 0s, opacity 0.3s ease-in-out;
+        }
+
+        /* Show the popup when active */
+        .popup.active {
+            visibility: visible;
+            opacity: 1;
+        }
+
+        /* Popup content box */
+        .popup-content {
+            background-color: white;
+            padding: 20px;
+            border-radius: 8px;
+            text-align: center;
+            animation: slideIn 0.5s ease;
+            position: relative;
+        }
+
+        /* Slide-in animation */
+        @keyframes slideIn {
+            from {
+                transform: translateY(-50px);
+                opacity: 0;
+            }
+            to {
+                transform: translateY(0);
+                opacity: 1;
+            }
+        }
+
+        /* Close button */
+        .close-btn {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hidden class for initial state */
+        .hidden {
+            display: none;
+        }
+
     </style>
 
     <script>
@@ -383,6 +440,7 @@
         }
 
     </script>
+    
 
 </head>
 <body>
@@ -446,8 +504,16 @@
                 <!-- Submit Button -->
                 <input type="submit" value="Submit">
             </form>
+            <div id="popup" class="popup hidden">
+                <div class="popup-content">
+                    <span class="close-btn">&times;</span>
+                    <p>Form Submitted Successfully!</p>
+                </div>
+            </div>
+            
         </div>
 
+        
         <!-- Right side of gui -->
         <div class="right">
             <!-- Recipe header -->
