@@ -4,8 +4,7 @@ from venv import create
 from flask import Flask, jsonify
 import json
 import requests
-from app import app, create_question, generate_ollama_response
-from app import get_gpt_response
+from app import app, create_question, generate_ollama_response, get_gpt_response, get_mistral_response
 
 #
 class TestCases(unittest.TestCase):
@@ -74,8 +73,7 @@ class TestCases(unittest.TestCase):
         # modelling API response format
         mock_response = MagicMock()
         mock_response.status_code = 200
-        mock_response.json.return_value= {"choices": [{"message": {"content": "Sample response from ChatGPT."}}]
-                                          }
+        mock_response.json.return_value= {"choices": [{"message": {"content": "Sample response from ChatGPT."}}]}
         mock_post.return_value = mock_response
         question = "Sample question"
         api_key = "mock_api_key"
@@ -97,7 +95,6 @@ class TestCases(unittest.TestCase):
 
         self.assertEqual(response, "Error: 400, Bad Request")
         mock_post.assert_called_once()
-
 
     @patch('app.requests.post') # mocks post
     def test_get_gpt_response_api_error(self, mock_post):
@@ -121,6 +118,42 @@ class TestCases(unittest.TestCase):
         # below checks if network error is raised correctly
         with self.assertRaises(requests.exceptions.RequestException):
             get_gpt_response(question, api_key)
+
+    @patch('app.requests.post')
+    def test_get_mistral_response_success(self, mock_post):
+        mock_response = MagicMock()
+        mock_response.status_code = 200
+        mock_response.json.return_value = {"choices": [{"message": {"content": "Sample Mistral response"}}]}
+        mock_post.return_value = mock_response
+
+        question = "Sample question"
+        response = get_mistral_response(question)
+
+        self.assertEqual(response, "Sample Mistral response")
+        mock_post.assert_called_once()
+
+    @patch('app.requests.post')
+    def test_get_mistral_response_error(self, mock_post):
+        mock_response = MagicMock()
+        mock_response.status_code = 400
+        mock_response.text = "Bad Request"
+        mock_post.return_value = mock_response
+
+        question = "Sample question"
+        response = get_mistral_response(question)
+
+        self.assertEqual(response, "Error: 400, Bad Request")
+        mock_post.assert_called_once()
+
+    @patch('app.requests.post')
+    def test_get_mistral_response_network_error(self, mock_post):
+        mock_post.side_effect = requests.exceptions.RequestException("Network error")
+
+        question = "Sample question"
+
+        with self.assertRaises(requests.exceptions.RequestException):
+            get_mistral_response(question)
+        mock_post.assert_called_once()
 
 if __name__ == '__main__':
     unittest.main()
