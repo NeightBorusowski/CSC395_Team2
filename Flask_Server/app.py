@@ -35,7 +35,7 @@ def create_question(company, ingredients, llm):
     elif llm == "ChatGPT":
         return get_gpt_response(question, api_key)
     elif llm == "Mistral":
-        return get_mistral_response
+        return get_mistral_response(question)
 
 def generate_ollama_response(question):
     client = Client(host='http://host.docker.internal:11434')
