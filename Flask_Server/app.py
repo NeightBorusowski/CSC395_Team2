@@ -24,7 +24,7 @@ def submit_data():
 
 def create_question(company, ingredients, llm):
     #format question
-    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}. Format as: title:, tagline:, then ingredients and recipe. ensure no newline between title and tagline, but always a newline between tagline and ingrediants an recipe"
+    question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}. Format as: title:, tagline:, then ingredients and recipe. ensure no newline between title and tagline, but always a newline between tagline and ingredients an recipe"
     print(question)
 
     #sending question to Ollama or any llm chosen

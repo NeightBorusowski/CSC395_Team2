@@ -20,7 +20,7 @@ class TestCases(unittest.TestCase):
 
         company = "Test Company"
         ingredients = ["cheese, pasta"]
-        llm = "ollama"
+        llm = "Ollama"
 
         response = create_question(company, ingredients, llm)
         self.assertEqual(response, "Recipe from Ollama")
@@ -33,7 +33,7 @@ class TestCases(unittest.TestCase):
         sample = {
             "company": "Sample Company",
             "ingredients": "bread, meat, cheese",
-            "llm": "ollama"
+            "llm": "Ollama"
         }
 
         # below is making a post request to /submit_data, json.dumps converts the sample to json string
