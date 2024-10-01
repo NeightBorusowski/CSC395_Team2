@@ -72,10 +72,10 @@ api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d
 
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
-    api_key = "IwvHistA7KPD7hEaUacofGx3QgSS9WNs"
+    key = "IwvHistA7KPD7hEaUacofGx3QgSS9WNs"
 
     headers = {
-        "Authorization": f"Bearer {api_key}",
+        "Authorization": f"Bearer {key}",
         "Content-Type": "application/json"
     }
     data = {
