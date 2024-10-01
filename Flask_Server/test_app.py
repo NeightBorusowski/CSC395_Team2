@@ -114,8 +114,8 @@ class TestCases(unittest.TestCase):
         # below simulates a network error
         mock_post.side_effect = requests.exceptions.RequestException("Network error")
 
-        question = "What is the definition of AI?"
-        api_key = "test-api-key"
+        question = "Sample question"
+        api_key = "mock_api_key"
 
         # below checks if network error is raised correctly
         with self.assertRaises(requests.exceptions.RequestException):

@@ -79,7 +79,7 @@ def get_mistral_response(question):
         "Content-Type": "application/json"
     }
     data = {
-        "model": "mistral-small",
+        "model": "mistral-small-latest",
         "messages": [
             {"role": "user", "content": question}
         ],
