@@ -82,7 +82,7 @@ def get_mistral_response(question):
         "model": "mistral-small",
         "messages": [
             {"role": "user", "content": question}
-        ]
+        ],
         "max_tokens": 500
     }
 
