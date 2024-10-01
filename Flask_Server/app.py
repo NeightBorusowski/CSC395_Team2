@@ -2,7 +2,9 @@ from flask import Flask, jsonify, request, render_template
 import requests
 from ollama import Client
 
+#constants
 app = Flask(__name__)
+api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
 
 @app.route("/submit_data", methods=["POST"])
 def submit_data():
@@ -67,8 +69,6 @@ def get_gpt_response(question, api_key):
         return response_data['choices'][0]['message']['content']
     else:
         return f"Error: {response.status_code}, {response.text}"
-
-api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
 
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
