@@ -32,6 +32,8 @@ def create_question(company, ingredients, llm):
         return generate_ollama_response(question)
     elif llm == "ChatGPT":
         return get_gpt_response(question, api_key)
+    elif llm == "Mistral":
+        return get_mistral_response
 
 def generate_ollama_response(question):
     client = Client(host='http://host.docker.internal:11434')
@@ -67,6 +69,30 @@ def get_gpt_response(question, api_key):
         return f"Error: {response.status_code}, {response.text}"
 
 api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
+
+def get_mistral_response(question):
+    api_url = "https://api.mistral.ai/v1/chat/completions"
+    api_key = "IwvHistA7KPD7hEaUacofGx3QgSS9WNs"
+
+    headers = {
+        "Authorization": f"Bearer {api_key}",
+        "Content-Type": "application/json"
+    }
+    data = {
+        "model": "mistral-small",
+        "messages": [
+            {"role": "user", "content": question}
+        ]
+        "max_tokens": 500
+    }
+
+    response = requests.post(api_url, headers = headers, json = data)
+
+    if response.status_code == 200:
+        response_data = response.json()
+        return response_data["choices"][0]["message"]["content"]
+    else:
+        return f"Error: {response.status_code}, {response.text}"
 
 @app.route('/')
 def home():
