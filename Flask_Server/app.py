@@ -73,7 +73,7 @@ def get_gpt_response(question, api_key):
 
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
-    key = os.getenv("IwvHistA7KPD7hEaUacofGx3QgSS9WNs")
+    key = ("IwvHistA7KPD7hEaUacofGx3QgSS9WNs")
 
     headers = {
         "Authorization": f"Bearer {key}",
