@@ -1,6 +1,7 @@
 from flask import Flask, jsonify, request, render_template
 import requests
 from ollama import Client
+import os
 
 #constants
 app = Flask(__name__)
@@ -72,7 +73,7 @@ def get_gpt_response(question, api_key):
 
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
-    key = "IwvHistA7KPD7hEaUacofGx3QgSS9WNs"
+    key = os.getenv("IwvHistA7KPD7hEaUacofGx3QgSS9WNs")
 
     headers = {
         "Authorization": f"Bearer {key}",
