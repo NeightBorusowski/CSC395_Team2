@@ -158,5 +158,6 @@ class TestCases(unittest.TestCase):
         # below checks if network error is raised correctly
         with self.assertRaises(requests.exceptions.RequestException):
             get_mistral_response(question)
+
 if __name__ == '__main__':
     unittest.main()
