@@ -1,35 +1,24 @@
 {
     "version": "0.2.0",
     "configurations": [
-        {
-            "name": "Docker: Flask Server",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug-flask-server",
-            "python": {
-                "pathMappings": [
-                    {
-                        "localRoot": "${workspaceFolder}/Flask_Server", 
-                        "remoteRoot": "/app" 
-                    }
-                ],
-                "projectType": "flask"
-            }
+      {
+        "name": "Python: Flask App",
+        "type": "python",
+        "request": "launch",
+        "program": "${workspaceFolder}/app.py",
+        "args": [],
+        "jinja": true,
+        "justMyCode": true,
+        "env": {
+          "FLASK_ENV": "development"
         },
-        {
-            "name": "Docker: Ollama",
-            "type": "docker",
-            "request": "launch",
-            "preLaunchTask": "docker-run: debug-ollama",
-            "python": {
-                "pathMappings": [
-                    {
-                        "localRoot": "${workspaceFolder}/Flask_Server/Ollama",  
-                        "remoteRoot": "/app"  
-                    }
-                ],
-                "projectType": "flask"
-            }
+        "dockerOptions": {
+          "containerName": "recipe-app-container",
+          "ports": {
+            "5000": "5000"
+          }
         }
+      }
     ]
-}
+  }
+  

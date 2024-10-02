@@ -1,89 +1,48 @@
 {
 	"version": "2.0.0",
 	"tasks": [
-		{
-			"type": "docker-build",
-			"label": "docker-build: flask-server",
-			"platform": "python",
-			"dockerBuild": {
-				"tag": "flaskdocker:latest",
-				"dockerfile": "${workspaceFolder}/Flask_Server/Dockerfile",
-				"context": "${workspaceFolder}/Flask_Server",
-				"pull": true
-			}
+	  {
+		"label": "docker-compose up",
+		"type": "shell",
+		"command": "docker-compose up --build",
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
 		},
-		{
-			"type": "docker-run",
-			"label": "docker-run: flask-server",
-			"dependsOn": [
-				"docker-build: flask-server"
-			],
-			"dockerRun": {
-				"env": {
-					"FLASK_APP": "app.py"
-				},
-				"ports": ["8080:8080"],
-				"volumes": [
-					{
-						"localPath": "${workspaceFolder}/Flask_Server",
-						"containerPath": "/app"
-					}
-				]
-			},
-			"python": {
-				"args": [
-					"run",
-					"--no-debugger",
-					"--no-reload",
-					"--host",
-					"0.0.0.0",
-					"--port",
-					"8080"
-				],
-				"module": "flask"
-			}
+		"problemMatcher": []
+	  },
+	  {
+		"label": "docker-compose down",
+		"type": "shell",
+		"command": "docker-compose down",
+		"group": {
+		  "kind": "test",
+		  "isDefault": true
 		},
-		{
-			"type": "docker-build",
-			"label": "docker-build: ollama",
-			"platform": "python",
-			"dockerBuild": {
-				"tag": "ollamadocker:latest",
-				"dockerfile": "${workspaceFolder}/Flask_Server/Ollama/Dockerfile",
-				"context": "${workspaceFolder}/Flask_Server/Ollama",
-				"pull": true
-			}
+		"problemMatcher": []
+	  },
+	  {
+		"label": "docker-build-flask",
+		"type": "shell",
+		"command": "docker build -t recipe-name-container:latest .",
+		"group": {
+		  "kind": "build",
+		  "isDefault": true
 		},
-		{
-			"type": "docker-run",
-			"label": "docker-run: ollama",
-			"dependsOn": [
-				"docker-build: ollama"
-			],
-			"dockerRun": {
-				"env": {
-					"FLASK_APP": "ollama_api.py" 
-				},
-				"ports": ["5000:5000"],
-				"volumes": [
-					{
-						"localPath": "${workspaceFolder}/Flask_Server/Ollama",
-						"containerPath": "/app"
-					}
-				]
-			},
-			"python": {
-				"args": [
-					"run",
-					"--no-debugger",
-					"--no-reload",
-					"--host",
-					"0.0.0.0",
-					"--port",
-					"5000"
-				],
-				"module": "flask"
-			}
-		}
+		"problemMatcher": [],
+		"detail": "Builds the Flask container"
+	  },
+	  {
+		"label": "docker-run-flask",
+		"type": "shell",
+		"command": "docker run --rm -p 5000:5000 recipe-name-container:latest",
+		"group": {
+		  "kind": "test",
+		  "isDefault": true
+		},
+		"problemMatcher": [],
+		"detail": "Runs the Flask container"
+	  }
 	]
-}
+  }
+  
