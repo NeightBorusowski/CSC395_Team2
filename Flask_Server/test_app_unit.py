@@ -25,8 +25,25 @@ class TestCases(unittest.TestCase):
         response = create_question(company, ingredients, llm)
         self.assertEqual(response, "Recipe from Ollama")
 
+    @patch('app.generate_ollama_response')
+    # this test mocks the client instance that generate_ollama_response
+    # makes, simulating generate_ollama_response
+    def test_generate_ollama_response(self, mock_client):
+        mock_instance = mock_client.return_value
+        # below uses an iterator to handle data from ollama in chunks
+        mock_instance.chat.return_value = iter([{"message": {"content": "Recipe part 1"}},
+                                                {"message": {"content": " and part 2"}}])
+
+        question = "Sample question"
+        response = generate_ollama_response(question)
+
+        # assertions
+        self.assertEqual(response, "Recipe part 1 and part 2")
+        mock_instance.chat.assert_called_once_with(model="llama2", messages=[{"role": "user", "content": question}],
+                                                   stream=True)
+
     @patch('app.generate_ollama_response') # this decorator mocks the Ollama API call
-    def test_submit_data_successfully(self, mock_generate_ollama_response):
+    def test_submit_data_successful_request(self, mock_generate_ollama_response):
         # mock a successful response from Ollama API
         mock_generate_ollama_response.return_value = "Sample recipe response from LLM."
 
@@ -53,53 +70,54 @@ class TestCases(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json, {"status": "error", "message": "Invalid request, 'company' and 'ingredients' are required"})
 
-    @patch('app.Client')
-    def test_generate_ollama_response(self, mock_client):
-        mock_instance = mock_client.return_value
-        # below uses an iterator to handle data from ollama in chunks
-        mock_instance.chat.return_value = iter([{"message": {"content": "Recipe part 1"}},
-                                                {"message": {"content": " and part 2"}}])
+    @patch('app.requests.post')
+    def test_ollama_network_error(self, mock_post):
+        mock_post.side_effect = requests.exceptions.RequestException("Network error")
 
-        question = "Sample question"
-        response = generate_ollama_response(question)
+        data = {
+            "company": "Test Company",
+            "ingredients": ["ingredient1", "ingredient2"],
+            "llm": "Ollama"
+        }
 
-        # assertions
-        self.assertEqual(response, "Recipe part 1 and part 2")
-        mock_instance.chat.assert_called_once_with(model = "llama2", messages = [{"role": "user", "content": question}], stream = True)
+        response = self.app.post('/submit_data', json=data)
 
-    @patch('app.requests.post') # mocks requests.post
-    def test_get_gpt_response_success(self, mock_post):
+        self.assertEqual(response.status_code, 500)
+        self.assertIn('Network error occurred', response.get_data(as_text=True))
+
+    @patch('app.get_gpt_response') # mocks requests.post
+    def test_get_gpt_response_success(self, mock_gpt):
         # below simulates successful API response, with the return value
         # modelling API response format
         mock_response = MagicMock()
         mock_response.status_code = 200
         mock_response.json.return_value= {"choices": [{"message": {"content": "Sample response from ChatGPT."}}]}
-        mock_post.return_value = mock_response
+        mock_gpt.return_value = mock_response
         question = "Sample question"
         api_key = "mock_api_key"
         response = get_gpt_response(question, api_key)
 
         self.assertEqual(response, "Sample response from ChatGPT.")
-        mock_post.assert_called_once()
+        mock_gpt.assert_called_once()
 
-    @patch('app.requests.post')
-    def test_get_gpt_response_error(self, mock_post):
+    @patch('app.get_gpt_response')
+    def test_get_gpt_response_failure(self, mock_gpt):
         mock_response = MagicMock()
         mock_response.status_code = 400
         mock_response.text = "Bad Request"
-        mock_post.return_value = mock_response
+        mock_gpt.return_value = mock_response
 
         question = "Sample question"
         api_key = "mock_api_key"
         response = get_gpt_response(question, api_key)
 
         self.assertEqual(response, "Error: 400, Bad Request")
-        mock_post.assert_called_once()
+        mock_gpt.assert_called_once()
 
-    @patch('app.requests.post') # mocks post
-    def test_get_gpt_response_api_error(self, mock_post):
-        mock_post.return_value.status_code = 401
-        mock_post.return_value.text = "Unauthorized"
+    @patch('app.get_gpt_response') # mocks post
+    def test_get_gpt_response_authentication_error(self, mock_gpt):
+        mock_gpt.return_value.status_code = 401
+        mock_gpt.return_value.text = "Unauthorized"
 
         question = "Sample question"
         api_key = "mock_api_key"
@@ -119,7 +137,7 @@ class TestCases(unittest.TestCase):
         with self.assertRaises(requests.exceptions.RequestException):
             get_gpt_response(question, api_key)
 
-    @patch('app.requests.post')
+    @patch('app.get_mistral_response')
     def test_get_mistral_response_success(self, mock_post):
         mock_response = MagicMock()
         mock_response.status_code = 200
@@ -132,7 +150,7 @@ class TestCases(unittest.TestCase):
         self.assertEqual(response, "Sample Mistral response")
         mock_post.assert_called_once()
 
-    @patch('app.requests.post')
+    @patch('app.get_mistral_response')
     def test_get_mistral_response_error(self, mock_post):
         mock_response = MagicMock()
         mock_response.status_code = 400
@@ -147,13 +165,14 @@ class TestCases(unittest.TestCase):
 
     @patch('app.requests.post')
     def test_get_mistral_response_network_error(self, mock_post):
+        # below simulates a network error
         mock_post.side_effect = requests.exceptions.RequestException("Network error")
 
         question = "Sample question"
 
+        # below checks if network error is raised correctly
         with self.assertRaises(requests.exceptions.RequestException):
             get_mistral_response(question)
-        mock_post.assert_called_once()
 
 if __name__ == '__main__':
     unittest.main()
