@@ -47,9 +47,7 @@ Use of Application
 The docker-compose.yml opens port 5000 to the local host in order to be able to effectively connect the Flask server container to the web browser. Here is what Dev Chef’s Cookbook looks like pictorially. 
 
 
-
-![diagram1](images\diagram1.PNG)
-
+![image](https://github.com/user-attachments/assets/0d965056-8de2-4b94-9631-4ec02f0b8e17)
 
 
 
