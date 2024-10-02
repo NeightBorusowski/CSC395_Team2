@@ -8,7 +8,9 @@ One of the most important prerequisites, is that, this project requires at minim
 
 Be sure to have Docker engine installed on your machine. https://www.docker.com
 
-In addition, be sure to have ollama downloaded locally on your machine, and import the .ollama folder into the “Flask_Server”.
+In addition, be sure to have ollama downloaded locally on your machine, and run the command "ollama pull llama2"
+
+Then import the .ollama folder into the “Flask_Server” folder, this .ollama folder should be located in your on the filepath "C:\Users\{username}\.ollama"
 
 To run this, use this sequence of commands in the terminal.
 
