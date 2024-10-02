@@ -1,0 +1,768 @@
+{
+  "id": "fc4c66d9-1f4b-48cb-9a86-d53fb27fb5a9",
+  "version": "2.0",
+  "name": "Dev Chef's Cookbook UI Testing",
+  "url": "http://127.0.0.1:5000",
+  "tests": [{
+    "id": "1dc48463-4947-4275-a7f7-3c706e569d28",
+    "name": "UI test",
+    "commands": [{
+      "id": "894e19e8-a3cc-4f51-8660-d522b9893d68",
+      "comment": "",
+      "command": "open",
+      "target": "/",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "1c731588-51bb-4537-9198-8725bac85529",
+      "comment": "",
+      "command": "setWindowSize",
+      "target": "763x952",
+      "targets": [],
+      "value": ""
+    }, {
+      "id": "91bbba8e-15eb-4081-b709-e10b37805560",
+      "comment": "",
+      "command": "click",
+      "target": "css=.arrow",
+      "targets": [
+        ["css=.arrow", "css:finder"],
+        ["xpath=//span", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "27843549-d818-4de3-98dd-5b6b22c607c8",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4286b301-0a6c-4ab8-94b1-86bc22642824",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b6e45f99-55f7-402d-b876-ec11c35ba9d1",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dc093060-348f-4708-a662-046e4341e2b7",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me a pasta dish"
+    }, {
+      "id": "6e317f1c-cb89-4ffa-8312-d116abc0d352",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(1)",
+      "targets": [
+        ["css=button:nth-child(1)", "css:finder"],
+        ["xpath=//button[@type='button']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button", "xpath:idRelative"],
+        ["xpath=//button", "xpath:position"],
+        ["xpath=//button[contains(.,'Ollama')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "4209ae8c-14e5-4425-acd3-130b40580e67",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "718632a2-5e25-4dab-82ca-dd38f8d51187",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a39609a2-a063-46ab-999d-286b566f0ff0",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me a pasta dish"
+    }, {
+      "id": "6c9f42b7-ada6-4324-8403-845b5e405d03",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'ChatGPT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6698923d-2747-4a21-a9d4-f2f720e8761f",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "dbff04d5-5f07-4f4b-bfc2-46a1bc201349",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "3fd60dd5-b956-4456-bdde-df9ce2c2881a",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make pasta dish"
+    }, {
+      "id": "cdc696e5-69f2-4374-8921-fd36195f6e4c",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(3)",
+      "targets": [
+        ["css=button:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Mistral')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "6cc46a46-4144-4170-b63a-d969c3d1d464",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "17663f67-8a30-4f5a-b002-dded4230c93f",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a5669eea-8c7c-48fa-b05f-f3cebc0193fe",
+      "comment": "",
+      "command": "select",
+      "target": "id=company",
+      "targets": [],
+      "value": "label=Heinz"
+    }, {
+      "id": "40270e4c-b4e6-4857-9ac2-2970f6e25d8f",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "a399fe87-a1cc-46bb-8a6f-a1013348e437",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me fry dish"
+    }, {
+      "id": "3fd4b4fb-99d1-4142-907c-529c8f0821b8",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'ChatGPT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "ee9f728c-1bf2-4e63-a818-d69f4cc8a9c2",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "7b6ce0d8-b11e-419d-b4a7-de8423475975",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b4d7126b-f249-4878-b4a0-0a75008fe21b",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make a fry dish"
+    }, {
+      "id": "e8107a4e-3596-407a-903f-0dc9ad370227",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(3)",
+      "targets": [
+        ["css=button:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Mistral')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "17b73a83-24d0-4ab7-922e-d9db89bdf22c",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f5cf4272-6c0e-43cd-9e5f-edd69264c956",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "47158103-b631-49d6-b932-870fbddf0959",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "1097a580-87ce-4b03-835a-265393cb3f27",
+      "comment": "",
+      "command": "select",
+      "target": "id=company",
+      "targets": [],
+      "value": "label=Tyson"
+    }, {
+      "id": "6405743f-dc73-4528-a19c-29e4ea328c40",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ca6841fe-0470-45b4-9d67-2073d99dbf32",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy cookies"
+    }, {
+      "id": "0cd105db-1033-4484-9518-eff97cdc6a47",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'ChatGPT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "27aa25e8-69c5-4017-8fd0-c6bdcea36e9e",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "eaff7707-e654-452a-84ac-72864384132d",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "9e0c802a-a0f3-439b-9d46-402769ce8fd4",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy cookies"
+    }, {
+      "id": "5f325f4e-9794-446e-b04d-c80b992fcfc3",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(3)",
+      "targets": [
+        ["css=button:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Mistral')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "db9e6683-49cd-496f-a671-a92bbc5123f1",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "b1b31d65-6b24-4ad4-a143-08466e6c749d",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "58e46c28-84d0-4212-b24d-c21421ba450a",
+      "comment": "",
+      "command": "select",
+      "target": "id=company",
+      "targets": [],
+      "value": "label=Nestle"
+    }, {
+      "id": "97d50c57-6f0c-48ec-b80b-824992d7cfbc",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "4d396da4-30bd-4536-a1fe-d8a9fe255929",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy brownies"
+    }, {
+      "id": "7349c6b3-38d1-43f9-9e4a-c2db96f4c60f",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'ChatGPT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "8fdbf525-d3e8-458c-a898-0cc216f09a69",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f92b1f37-ee42-4540-bcef-7383b7c24444",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "ce73bb79-9acc-402f-a515-e555c7b88a25",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(3)",
+      "targets": [
+        ["css=button:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Mistral')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "0095e073-bbc2-4dab-9f07-a95a1a1cd908",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "8f7e2e19-da2c-43c2-a56e-bc4d2c9c64f7",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy brownies"
+    }, {
+      "id": "beff1145-a312-4f86-baea-2b3018f42669",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "971cf7d2-8f5f-419c-b603-f71e67e77a5b",
+      "comment": "",
+      "command": "click",
+      "target": "id=company",
+      "targets": [
+        ["id=company", "id"],
+        ["css=#company", "css:finder"],
+        ["xpath=//select[@id='company']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/select", "xpath:idRelative"],
+        ["xpath=//select", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "6a8a4a9b-2dc2-4f53-b33b-af16efb765aa",
+      "comment": "",
+      "command": "select",
+      "target": "id=company",
+      "targets": [],
+      "value": "label=General Mills"
+    }, {
+      "id": "708cc27d-fc40-4365-9776-72bac7425105",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "cb7462e7-cd24-41fb-bcab-420164c111f2",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy cereal"
+    }, {
+      "id": "c01b14d2-1ac7-4f64-802c-18e7589e0625",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(2)",
+      "targets": [
+        ["css=button:nth-child(2)", "css:finder"],
+        ["xpath=(//button[@type='button'])[2]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[2]", "xpath:idRelative"],
+        ["xpath=//button[2]", "xpath:position"],
+        ["xpath=//button[contains(.,'ChatGPT')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "2e07fadb-55a9-4a3e-917a-7eab34d40ee8",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "f782a90c-fb96-435d-8941-336d8f963039",
+      "comment": "",
+      "command": "click",
+      "target": "css=button:nth-child(3)",
+      "targets": [
+        ["css=button:nth-child(3)", "css:finder"],
+        ["xpath=(//button[@type='button'])[3]", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/div/button[3]", "xpath:idRelative"],
+        ["xpath=//button[3]", "xpath:position"],
+        ["xpath=//button[contains(.,'Mistral')]", "xpath:innerText"]
+      ],
+      "value": ""
+    }, {
+      "id": "e3321979-8c57-4eeb-a6d2-b28c38862495",
+      "comment": "",
+      "command": "click",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "2fd4ef3a-7740-4a15-91f0-976eaa23fe96",
+      "comment": "",
+      "command": "type",
+      "target": "id=ingredients",
+      "targets": [
+        ["id=ingredients", "id"],
+        ["css=#ingredients", "css:finder"],
+        ["xpath=//textarea[@id='ingredients']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/textarea", "xpath:idRelative"],
+        ["xpath=//textarea", "xpath:position"]
+      ],
+      "value": "make me yummy cereal"
+    }, {
+      "id": "5ac8d4dc-d27d-479c-a18b-0c98b7a594d6",
+      "comment": "",
+      "command": "click",
+      "target": "css=input",
+      "targets": [
+        ["css=input", "css:finder"],
+        ["xpath=//input[@value='Submit']", "xpath:attributes"],
+        ["xpath=//div[@id='content']/form/input", "xpath:idRelative"],
+        ["xpath=//input", "xpath:position"]
+      ],
+      "value": ""
+    }, {
+      "id": "e903935d-2afd-4a9e-baba-89d8a55205fc",
+      "comment": "",
+      "command": "mouseDownAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "699,548"
+    }, {
+      "id": "d3341c97-3abe-467e-a620-9ed0d8025edc",
+      "comment": "",
+      "command": "mouseMoveAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "699,548"
+    }, {
+      "id": "5e96bc20-8f9f-4285-b343-897b02438fcc",
+      "comment": "",
+      "command": "mouseUpAt",
+      "target": "css=body",
+      "targets": [
+        ["css=body", "css:finder"],
+        ["xpath=//body", "xpath:position"]
+      ],
+      "value": "699,548"
+    }]
+  }],
+  "suites": [{
+    "id": "c81245c4-3f12-4f81-a6ad-16c22af0c20f",
+    "name": "Default Suite",
+    "persistSession": false,
+    "parallel": false,
+    "timeout": 300,
+    "tests": []
+  }],
+  "urls": ["http://127.0.0.1:5000/"],
+  "plugins": []
+}
