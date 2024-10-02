@@ -48,7 +48,7 @@ The docker-compose.yml opens port 5000 to the local host in order to be able to 
 
 
 
-
+![Alt text](images\diagram1.PNG)
 
 
 
