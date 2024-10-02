@@ -39,13 +39,19 @@ def create_question(company, ingredients, llm):
 
 #Ollama question
 def generate_ollama_response(question):
-    client = Client(host='http://host.docker.internal:11434')
-    stream = client.chat(model="llama2", messages=[{"role": "user", "content": question}], stream=True)
+    try:
+        client = Client(host='http://host.docker.internal:11434')
+        stream = client.chat(model="llama2", messages=[{"role": "user", "content": question}], stream=True)
     
-    full_answer = ''
-    for chunk in stream:
-        full_answer += chunk['message']['content']
-    return full_answer
+        full_answer = ''
+        for chunk in stream:
+            if 'message' in chunk and 'content' in chunk['message']:
+                full_answer += chunk['message']['content']
+            else:
+                return "Invalid response from Ollama"
+        return full_answer
+    except requests.exceptions.ConnectionError:
+        return "Failed to connect to Ollama"
 
 #ChatGPT question
 def get_gpt_response(question, api_key):

@@ -68,6 +68,28 @@ class TestCases(unittest.TestCase):
         self.assertEqual(response.status_code, 400)
         self.assertEqual(response.json, {"status": "error", "message": "Invalid request, 'company' and 'ingredients' are required"})
 
+    @patch('app.Client')
+    def test_junk_data(self, mock_client):
+        mock_instance = mock_client.return_value
+        # below simulates returning unexpected data
+        # through use of using a dictionary
+        mock_instance.chat.return_value = iter([{"invalid_key": "unexpected data"}])
+
+        question = "Sample question"
+        response = generate_ollama_response(question)
+
+        # asserts that random data is handled, and invalid response is raised
+        self.assertEqual(response, "Invalid response from Ollama")
+
+    @patch('app.Client')
+    def test_generate_ollama_response_connection_failure(self, mock_client):
+        mock_client.side_effect = requests.exceptions.ConnectionError("Failed to connect to Ollama")
+
+        question = "Sample question"
+        response = generate_ollama_response(question)
+
+        self.assertEqual(response, "Failed to connect to Ollama")
+
     @patch('app.requests.post')  # mocks requests.post
     def test_get_gpt_response_success(self, mock_gpt):
         # below simulates successful API response, with the return value
