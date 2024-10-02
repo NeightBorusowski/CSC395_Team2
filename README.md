@@ -67,6 +67,7 @@ After doing this, hit submit and wait until response is generated!
 Example recipe!
 
 
+![image](https://github.com/user-attachments/assets/12b22b33-25df-4cf4-ba86-9455a9966b16)
 
 
 
