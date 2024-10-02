@@ -1,4 +1,8 @@
-# To ensure app dependencies are ported from your virtual environment/host machine into your container, run 'pip freeze > requirements.txt' in the terminal to overwrite this file
+#Flask download, ver == 3.0.1
 flask==3.0.1
+
+#Ollama download, ver == 0.2.0
 ollama==0.2.0
+
+#Requests download, ver == 2.32.3 
 requests==2.32.3

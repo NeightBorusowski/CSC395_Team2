@@ -1,32 +1,47 @@
 services:
+#Ollama container
   ollama:
+  #Image name
     image: ollama/ollama
+    #Container name
     container_name: ollama-container
     restart: on-failure
     volumes:
       - .ollama:/root/.ollama
+    #Port to host on
     ports:
       - "11434:11434"
     networks:
       - app-network
 
+    #Recipe app container
   flask-server:
     build:
-      context: ./  # Build Flask app
+      #Build flask app
+      context: ./
       dockerfile: Dockerfile
+    #Container name
     container_name: recipe-app-container
+    #Image name
     image: recipe-name-container:latest
+    #Port to host on
     ports:
       - "5000:5000"
     volumes:
       - .:/app
     networks:
       - app-network
+    #Debbuging and dev mode
     environment:
-      - FLASK_ENV=development  # Enable development mode
-      - FLASK_DEBUG=1  # Enable debug mode
-    command: flask run --host=0.0.0.0 --port=8080  # Start Flask in debug mode
+      - FLASK_ENV=development  #Enable development mode
+      - FLASK_DEBUG=1  #Enable debug mode
+    command: flask run --host=0.0.0.0 --port=8080  #Start Flask in debug mode
 
+#Network for communcation
 networks:
   app-network:
     driver: bridge
+
+volumes:
+  ollama:
+    driver: local

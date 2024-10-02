@@ -378,18 +378,18 @@
             //Prevent form submission to keep page from refreshing
             event.preventDefault();
 
-            //Get the selected company value and the text from the textarea
+            //Get the selected company and ingredients
             const company = document.getElementById('company').value;
             const ingredients = document.getElementById('ingredients').value;
 
-            //data to be held for passsing in to backend
+            //Data to be held for passsing in to backend
             const data = {
                 company: company,
                 ingredients: ingredients,
                 llm: selectedLLM
             };
 
-            //Send the data to Flask server via POST request
+            //Sending data to the Flask server via a POST request
             fetch('/submit_data', {
                     method: 'POST',
                     headers: {
@@ -412,7 +412,7 @@
                         const recipeName = Name.substring(7);
                         const recipeTagline = Tagline.substring(9);
 
-                        // Update the frontend with the received data
+                        //Update the frontend with data passed back
                         updateRecipe(recipeName, recipeTagline, recipeText);
                     }else {
                     alert('Error: ' + data.message);
@@ -422,25 +422,25 @@
                 console.error('Error:', error);
             });
 
-            // Reset the textarea
+            //Reset the textarea
             document.getElementById('ingredients').value = '';
 
         }
 
-        //allows llms to be selected and passed to backend
+        //Allows llms to be selected and passed to backend
         function selectLLM(button) {
-            // Remove selected class from all buttons
+            //Remove selected class from all buttons
             const buttons = document.querySelectorAll('.llm-buttons button');
             buttons.forEach(btn => btn.classList.remove('selected'));
 
-            // Add selected class to the clicked button
+            //Add selected class to the clicked button
             button.classList.add('selected');
 
-            // Save the selected LLM button text
+            //Save the selected LLM button text
             selectedLLM = button.innerText;
         }
 
-        //function to update the recipe content from another application
+        //Function to update the recipe content from another application
         function updateRecipe(name, tagline, recipeText) {
             document.getElementById('recipe-name').textContent = name;
             document.getElementById('recipe-tagline').textContent = tagline;

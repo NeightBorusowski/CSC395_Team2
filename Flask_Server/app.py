@@ -2,7 +2,7 @@ from flask import Flask, jsonify, request, render_template
 import requests
 from ollama import Client
 
-#constants
+#Constants
 app = Flask(__name__)
 api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
 
@@ -10,7 +10,7 @@ api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d
 def submit_data():
     data = request.get_json()
 
-    # Validate incoming data
+    #Validate incoming data
     if not data or 'company' not in data or 'ingredients' not in data:
         return jsonify({"status": "error", "message": "Invalid request, 'company' and 'ingredients' are required"}), 400
 
@@ -25,11 +25,11 @@ def submit_data():
         return jsonify({"status": "error", "message": str(e)}), 500
 
 def create_question(company, ingredients, llm):
-    #format question
+    #Format question
     question = f"Create a recipe using the company {company} with these ingredients: {', '.join(ingredients)}. Format as: title:, tagline:, then ingredients and recipe. ensure no newline between title and tagline, but always a newline between tagline and ingredients an recipe"
     print(question)
 
-    #sending question to Ollama or any llm chosen
+    #Sending question to chosen LLM
     if llm == "Ollama":
         return generate_ollama_response(question)
     elif llm == "ChatGPT":
@@ -37,6 +37,7 @@ def create_question(company, ingredients, llm):
     elif llm == "Mistral":
         return get_mistral_response(question)
 
+#Ollama question
 def generate_ollama_response(question):
     client = Client(host='http://host.docker.internal:11434')
     stream = client.chat(model="llama2", messages=[{"role": "user", "content": question}], stream=True)
@@ -46,9 +47,7 @@ def generate_ollama_response(question):
         full_answer += chunk['message']['content']
     return full_answer
 
-#extra credit, generating a respone with chat gpt
-
-
+#ChatGPT question
 def get_gpt_response(question, api_key):
     url = "https://api.openai.com/v1/chat/completions"
     headers = {
@@ -57,9 +56,9 @@ def get_gpt_response(question, api_key):
     }
 
     data = {
-        "model": "gpt-3.5-turbo",  # or "gpt-4" if you have access
+        "model": "gpt-3.5-turbo",  #GPT model
         "messages": [{"role": "user", "content": question}],
-        "max_tokens": 500,  # Adjust based on how long you want the response
+        "max_tokens": 500, #Response length
     }
 
     response = requests.post(url, headers=headers, json=data)
@@ -70,6 +69,7 @@ def get_gpt_response(question, api_key):
     else:
         return f"Error: {response.status_code}, {response.text}"
 
+    #Mistral Question
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
     key = ("yijdWnHAefLeBCw5MY0Iw9BcJPFXMzNY")
@@ -95,6 +95,7 @@ def get_mistral_response(question):
         return f"Error: {response.status_code}, {response.text}"
 
 @app.route('/')
+#render frontend
 def home():
     return render_template('index.html')
 

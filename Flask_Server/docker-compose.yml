@@ -1,21 +1,30 @@
 services:
+#Ollama container
   ollama:
+  #Image name
     image: ollama/ollama
+    #Container name
     container_name: ollama-container
     restart: on-failure
     volumes:
       - .ollama:/root/.ollama
+    #Port to host on
     ports:
       - "11434:11434"
     networks:
       - app-network
 
+  #Recipe app container
   flask-server:
     build:
-      context: ./  #build flask app
+      #Build flask app
+      context: ./
       dockerfile: Dockerfile
+    #Container name
     container_name: recipe-app-container
+    #Image name
     image: recipe-name-container:latest
+    #Port to host on
     ports:
       - "5000:5000"
     volumes:
@@ -23,6 +32,7 @@ services:
     networks:
       - app-network
 
+#Network for communcation
 networks:
   app-network:
     driver: bridge
