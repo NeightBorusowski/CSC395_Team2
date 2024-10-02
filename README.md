@@ -60,6 +60,7 @@ First, select the drop down of the company you would like to use.
 Next, input the ingredients, and choose an LLM.
 After doing this, hit submit and wait until response is generated!
 
+![image](https://github.com/user-attachments/assets/87e5869f-0178-499f-8b8c-a28b833cb699)
 
 
 
