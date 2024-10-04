@@ -24,7 +24,7 @@ recipe-app-container  |  * Running on http://127.0.0.1:5000
 
 These commands sets up the Docker container and sets it on a localhost on port 5000, in order to communicate with the LLM.
 
-Also for the ChatGPT and minstral functioanlity, we revoked our own personal API keys, so for those functions to work, pleas enter your own api keys in the respective place.
+Also for the ChatGPT and minstral functionality, we revoked our own personal API keys. For those functions to work, please enter your own API keys in their respective places.
 
 Framework Description
 
