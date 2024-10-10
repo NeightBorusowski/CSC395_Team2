@@ -4,7 +4,7 @@ from ollama import Client
 
 #Constants
 app = Flask(__name__)
-api_key = "sk-SbQHK4vuxKgUg54j0RR1aJZd4VezN3eQCx0jn-dbrvT3BlbkFJFuU04r5n4fUa1M7d2zBL1xw_i9g5Y94FFYycgwuI8A"
+api_key = "add APIKey here"
 
 @app.route("/submit_data", methods=["POST"])
 def submit_data():
@@ -78,7 +78,7 @@ def get_gpt_response(question, api_key):
     #Mistral Question
 def get_mistral_response(question):
     api_url = "https://api.mistral.ai/v1/chat/completions"
-    key = ("yijdWnHAefLeBCw5MY0Iw9BcJPFXMzNY")
+    key = ("Add APIKEY here")
 
     headers = {
         "Authorization": f"Bearer {key}",
